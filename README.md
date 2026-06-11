@@ -25,7 +25,7 @@ All through natural language commands—just describe what you want done.
 
 ## Key Features
 
-- **8,000+ App Connections** — Access Zapier's massive library of pre-built integrations
+- **9,000+ App Connections** — Access Zapier's massive library of pre-built integrations
 - **40,000+ Actions** — Enable specific tasks and searches across apps
 - **Natural Language** — No complex commands needed
 - **Secure by Default** — Authentication, encryption, and rate limiting handled by Zapier
