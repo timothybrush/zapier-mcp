@@ -1,0 +1,52 @@
+# Zapier MCP
+
+> Official plugin distribution repository for the hosted Zapier MCP server. Install Zapier MCP in your AI client to connect your assistant to 9,000+ apps and 40,000+ actions via the Model Context Protocol.
+
+This repository contains per-client plugin manifests, install assets, skills, and rules. It does **not** contain the MCP server implementation — the server is hosted at `mcp.zapier.com/api/v1/connect` and is closed source. Pair this repo with the [Zapier MCP product page](https://zapier.com/mcp) and the [MCP documentation](https://docs.zapier.com/mcp/home.md) for the full picture.
+
+## Getting started
+
+- [README](https://github.com/zapier/zapier-mcp/blob/main/README.md): What Zapier MCP is, what it can do, and how to connect a client.
+- [Quickstart (5 min)](https://docs.zapier.com/mcp/quickstart.md): Step-by-step setup in any MCP client.
+- [Supported clients](https://docs.zapier.com/mcp/clients.md): Per-client setup guides for Claude, Cursor, VS Code, Windsurf, ChatGPT, Codex, and more.
+- [Product page](https://zapier.com/mcp): Sign-up and the action library.
+
+## Plugin manifests
+
+Per-client install manifests live under `plugins/zapier/`. Each surfaces the same MCP server (`mcp.zapier.com/api/v1/connect`) shaped for a specific client.
+
+- [Claude Code plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.claude-plugin/plugin.json): Manifest for Claude Code's plugin marketplace.
+- [Codex plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.codex-plugin/plugin.json): Manifest for OpenAI Codex's plugin distribution, with full marketplace `interface` block.
+- [Cursor plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.cursor-plugin/plugin.json): Manifest for Cursor's plugin marketplace.
+- [MCP server config](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.mcp.json): Generic `mcpServers` declaration with `"type": "http"`.
+- [Claude marketplace registry](https://github.com/zapier/zapier-mcp/blob/main/.claude-plugin/marketplace.json): Top-level marketplace entry pointing at `plugins/zapier`.
+- [Cursor marketplace registry](https://github.com/zapier/zapier-mcp/blob/main/.cursor-plugin/marketplace.json): Top-level marketplace entry pointing at `plugins/zapier`.
+
+## Skills
+
+Steering for AI assistants invoked during install, setup, or status checks.
+
+- [zapier-setup](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/skills/zapier-setup/SKILL.md): First-run setup flow — authenticate, detect server mode, and add tools.
+- [zapier-status](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/skills/zapier-status/SKILL.md): Health check and audit of the user's current Zapier MCP setup.
+- [create-my-tools-profile](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/skills/create-my-tools-profile/SKILL.md): Generate a personalized skill from the user's enabled tools.
+
+## Rules and agent steering
+
+- [AGENTS.md](https://github.com/zapier/zapier-mcp/blob/main/AGENTS.md): Routing table that tells agents which skill or rule to load for a given user intent.
+- [zapier-lifecycle.mdc](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/rules/zapier-lifecycle.mdc): Lifecycle rules — Agentic vs Classic detection, read/write safety model, duplicate-tool handling.
+- [zapier-mcp.agent.md](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/agents/zapier-mcp.agent.md): Persona-style agent definition for clients that load `.agent.md` files.
+
+## Documentation
+
+- [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home.md): Documentation home for Zapier MCP.
+- [docs.zapier.com/mcp/clients](https://docs.zapier.com/mcp/clients.md): Per-client install and connect guides.
+- [docs.zapier.com/mcp/usage](https://docs.zapier.com/mcp/usage.md): Usage limits, billing, and quotas.
+- [Embedding Zapier MCP](https://docs.zapier.com/powered-by-zapier/embedding-zapier-mcp/getting-started.md): Embed Zapier MCP inside your product.
+- [zapier.com/llms.txt](https://zapier.com/llms.txt): Top-level Zapier llms.txt with cross-references for related topics (SDK, agents, integrations).
+
+## Optional
+
+- [LICENSE](https://github.com/zapier/zapier-mcp/blob/main/LICENSE): MIT.
+- [CODE_OF_CONDUCT.md](https://github.com/zapier/zapier-mcp/blob/main/CODE_OF_CONDUCT.md): Contributor Covenant.
+- [CLAUDE.md](https://github.com/zapier/zapier-mcp/blob/main/CLAUDE.md): Claude-specific guidance file (mirrors `AGENTS.md`).
+- [Brand assets](https://github.com/zapier/zapier-mcp/tree/main/plugins/zapier/assets): Logo and icon used across plugin marketplaces.
