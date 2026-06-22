@@ -9,6 +9,7 @@
   },
   "homepage": "https://github.com/zapier/zapier-mcp",
   "repository": "https://github.com/zapier/zapier-mcp",
+  "license": "MIT",
   "category": "productivity",
   "keywords": [
     "zapier",
@@ -32,6 +33,7 @@
     "ai-actions",
     "productivity"
   ],
+  "logo": "assets/logo.svg",
   "skills": "./skills/",
   "rules": "./rules/",
   "mcpServers": "./.mcp.json"
