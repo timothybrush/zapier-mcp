@@ -8,7 +8,7 @@ This repository contains per-client plugin manifests, install assets, skills, an
 
 - [README](https://github.com/zapier/zapier-mcp/blob/main/README.md): What Zapier MCP is, what it can do, and how to connect a client.
 - [Quickstart (5 min)](https://docs.zapier.com/mcp/quickstart.md): Step-by-step setup in any MCP client.
-- [Supported clients](https://docs.zapier.com/mcp/clients.md): Per-client setup guides for Claude, Cursor, VS Code, Windsurf, ChatGPT, Codex, and more.
+- [Supported clients](https://docs.zapier.com/mcp/clients.md): Per-client setup guides for Claude, Cursor, VS Code, Windsurf, ChatGPT, and more.
 - [Product page](https://zapier.com/mcp): Sign-up and the action library.
 
 ## Plugin manifests
@@ -16,7 +16,6 @@ This repository contains per-client plugin manifests, install assets, skills, an
 Per-client install manifests live under `plugins/zapier/`. Each surfaces the same MCP server (`mcp.zapier.com/api/v1/connect`) shaped for a specific client.
 
 - [Claude Code plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.claude-plugin/plugin.json): Manifest for Claude Code's plugin marketplace.
-- [Codex plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.codex-plugin/plugin.json): Manifest for OpenAI Codex's plugin distribution, with full marketplace `interface` block.
 - [Cursor plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.cursor-plugin/plugin.json): Manifest for Cursor's plugin marketplace.
 - [MCP server config](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.mcp.json): Generic `mcpServers` declaration with `"type": "http"`.
 - [Claude marketplace registry](https://github.com/zapier/zapier-mcp/blob/main/.claude-plugin/marketplace.json): Top-level marketplace entry pointing at `plugins/zapier`.

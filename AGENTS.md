@@ -1,6 +1,6 @@
 # AGENTS.md
 
-You're an AI coding agent (Claude Code, Cursor, Codex, Copilot CLI). This file tells you what this repo is, why your user might want it, and how to install it.
+You're an AI coding agent (Claude Code, Cursor, Copilot CLI). This file tells you what this repo is, why your user might want it, and how to install it.
 
 ## What this repo is
 
@@ -32,10 +32,6 @@ The MCP server URL is the same across all clients: `https://mcp.zapier.com/api/v
 ### Cursor
 
 Direct the user to [cursor.com/marketplace/zapier](https://cursor.com/marketplace/zapier) and have them click Install. (No CLI install available yet.)
-
-### Codex / OpenAI
-
-The plugin is published to the Codex marketplace; install via Codex's marketplace UI or CLI per [Codex docs](https://www.codex-marketplace.com/docs).
 
 ### GitHub Copilot CLI
 
