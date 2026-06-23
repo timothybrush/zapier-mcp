@@ -4,6 +4,15 @@
 
 The hosted server lives at `mcp.zapier.com/api/v1/connect` and is closed source. This repo is the discovery and installation surface: plugin manifests, onboarding skills, and lifecycle rules that help your AI client use the server correctly from the first call.
 
+## About Zapier MCP
+
+[Zapier MCP](https://zapier.com/mcp) is a hosted Model Context Protocol server that connects AI assistants to 9,000+ apps. Servers run in one of two modes:
+
+- **Agentic** — Action discovery and execution are managed in chat through built-in meta-tools.
+- **Classic** — Each enabled action is exposed as a dedicated tool named `app_action_name`.
+
+The plugin in this repo detects which mode you're on and routes accordingly. For the full mode-specific built-in tool reference and product overview, see [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home.md).
+
 ## What's in this repo
 
 - **Per-client plugin manifests** for [Claude Code](./plugins/zapier/.claude-plugin/plugin.json), [Cursor](./plugins/zapier/.cursor-plugin/plugin.json), and [GitHub Copilot CLI](./plugins/zapier/.github/plugin/plugin.json), under `plugins/zapier/`
@@ -68,10 +77,6 @@ Add to your client's MCP config:
 ```
 
 Then sign in at [mcp.zapier.com](https://mcp.zapier.com) when prompted.
-
-## Zapier MCP, briefly
-
-[Zapier MCP](https://zapier.com/mcp) is a hosted Model Context Protocol server that connects AI assistants to 9,000+ apps. Servers run in one of two modes — **Agentic** (action discovery and execution managed in chat through built-in meta-tools) or **Classic** (each enabled action exposed as a dedicated tool). For the full mode-specific built-in tool reference and product overview, see [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home.md).
 
 ## After install
 

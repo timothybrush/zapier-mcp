@@ -26,16 +26,25 @@ The MCP server URL is the same across all clients: `https://mcp.zapier.com/api/v
 
 ```
 /plugin marketplace add zapier/zapier-mcp
-/plugin install zapier
+/plugin install zapier@zapier-plugins
 ```
+
+If Anthropic's [`claude-plugins-official`](https://github.com/anthropics/claude-plugins-official) marketplace is already added, skip the first step and run `/plugin install zapier@claude-plugins-official` instead.
 
 ### Cursor
 
-Direct the user to [cursor.com/marketplace/zapier](https://cursor.com/marketplace/zapier) and have them click Install. (No CLI install available yet.)
+Direct the user to [cursor.com/marketplace/zapier](https://cursor.com/marketplace/zapier) and have them click **Install**. (No CLI install available yet.)
 
 ### GitHub Copilot CLI
 
-See [plugins/zapier/.github/plugin/plugin.json](./plugins/zapier/.github/plugin/plugin.json).
+```
+copilot plugin marketplace add zapier/zapier-mcp
+copilot plugin install zapier@zapier-plugins
+```
+
+### Kiro
+
+Direct the user to [kiro.dev/powers](https://kiro.dev/powers), find Zapier, and click **Add to Kiro**. Powers register through the IDE — no command-line setup.
 
 ### Manual (any MCP-compatible client)
 
@@ -68,4 +77,10 @@ If the user has zero actions configured, trigger the [zapier-setup skill](./plug
 | Setup walkthrough | [plugins/zapier/skills/zapier-setup/SKILL.md](./plugins/zapier/skills/zapier-setup/SKILL.md) |
 | Status / health checks | [plugins/zapier/skills/zapier-status/SKILL.md](./plugins/zapier/skills/zapier-status/SKILL.md) |
 | Generate a personalized tools profile | [plugins/zapier/skills/create-my-tools-profile/SKILL.md](./plugins/zapier/skills/create-my-tools-profile/SKILL.md) |
+| Claude Code plugin manifest | [plugins/zapier/.claude-plugin/plugin.json](./plugins/zapier/.claude-plugin/plugin.json) |
+| Cursor plugin manifest | [plugins/zapier/.cursor-plugin/plugin.json](./plugins/zapier/.cursor-plugin/plugin.json) |
+| GitHub Copilot CLI plugin manifest | [plugins/zapier/.github/plugin/plugin.json](./plugins/zapier/.github/plugin/plugin.json) |
+| Kiro Power manifest | [POWER.md](./POWER.md) |
+| LLM discovery index | [llms.txt](./llms.txt) |
 | Repo overview for humans | [README.md](./README.md) |
+| How to contribute | [CONTRIBUTING.md](./CONTRIBUTING.md) |

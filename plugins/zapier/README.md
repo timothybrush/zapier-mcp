@@ -7,9 +7,9 @@ Connects your AI client to [Zapier MCP](https://zapier.com/mcp) — Zapier's hos
 After installing the plugin:
 
 1. Connect the Zapier MCP server in your client's settings:
-   - **Cursor:** Settings > Cursor Settings > Tools & MCP > click **Connect**
-   - **Claude Desktop:** Customize > Connectors > Zapier > click **Connect**
-   - **Other clients:** find the Zapier MCP server in your MCP settings and connect
+   - **Cursor:** Settings → Cursor Settings → Tools & MCP → click **Connect**
+   - **Claude Desktop:** Customize → Connectors → Zapier → click **Connect**
+   - **Other clients:** Find the Zapier MCP server in your MCP settings and click Connect
 2. Sign in to your Zapier account when prompted
 3. Open a chat and say **"setup zapier"** to get started
 
