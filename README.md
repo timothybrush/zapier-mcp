@@ -13,6 +13,8 @@ The hosted server lives at `mcp.zapier.com/api/v1/connect` and is closed source.
 
 The plugin in this repo detects which mode you're on and routes accordingly. For the full mode-specific built-in tool reference and product overview, see [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home.md).
 
+https://github.com/user-attachments/assets/8304058f-67da-40b9-bc4f-5095b2817d61
+
 ## What's in this repo
 
 - **Per-client plugin manifests** for [Claude Code](./plugins/zapier/.claude-plugin/plugin.json), [Cursor](./plugins/zapier/.cursor-plugin/plugin.json), and [GitHub Copilot CLI](./plugins/zapier/.github/plugin/plugin.json), under `plugins/zapier/`
