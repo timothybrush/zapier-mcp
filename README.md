@@ -1,125 +1,106 @@
-# Zapier MCP
+# zapier-mcp
 
-**Connect your AI to thousands of apps with the Model Context Protocol**
+> Official plugin distribution for [Zapier MCP](https://zapier.com/mcp). Install the plugin in your AI client and your agent gains access to 9,000+ apps and 40,000+ actions via Zapier's hosted Model Context Protocol server.
 
-Transform your AI assistant from a conversational tool into a functional extension of your applications. [Zapier MCP](https://zapier.com/mcp) is a **remote** MCP server that gives your AI direct access to 9,000+ apps and 40,000+ actions—no complex API integrations required.
+The hosted server lives at `mcp.zapier.com/api/v1/connect` and is closed source. This repo is the discovery and installation surface: plugin manifests, onboarding skills, and lifecycle rules that help your AI client use the server correctly from the first call.
 
-https://github.com/user-attachments/assets/8304058f-67da-40b9-bc4f-5095b2817d61
+## About Zapier MCP
 
----
+[Zapier MCP](https://zapier.com/mcp) is a hosted Model Context Protocol server that connects AI assistants to 9,000+ apps. Servers run in one of two modes:
 
-## What is Zapier MCP?
+- **Agentic** — Action discovery and execution are managed in chat through built-in meta-tools.
+- **Classic** — Each enabled action is exposed as a dedicated tool named `app_action_name`.
 
-[Zapier MCP](https://zapier.com/mcp) is a standardized way to connect AI assistants to thousands of apps and services. It enables your AI to take real actions like:
+The plugin in this repo detects which mode you're on and routes accordingly. For the full mode-specific built-in tool reference and product overview, see [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home.md).
 
-- 💬 Send Slack messages and create channels
-- 📊 Add rows to Google Sheets and create spreadsheets
-- 📧 Send Gmail emails and manage labels
-- ✅ Create Asana tasks and update projects
-- 🐙 Create GitHub issues and manage PRs
-- 📈 Update HubSpot deals and manage contacts
+## What's in this repo
 
-All through natural language commands—just describe what you want done.
+- **Per-client plugin manifests** for [Claude Code](./plugins/zapier/.claude-plugin/plugin.json), [Cursor](./plugins/zapier/.cursor-plugin/plugin.json), and [GitHub Copilot CLI](./plugins/zapier/.github/plugin/plugin.json), under `plugins/zapier/`
+- **A Kiro Power manifest** at [`POWER.md`](./POWER.md) for [Kiro.dev](https://kiro.dev) consumption
+- **Onboarding skills** for auth, action selection, and health checks ([`skills/`](./plugins/zapier/skills/))
+- **Lifecycle rules** covering server-mode detection and the read/write safety model ([`zapier-lifecycle.mdc`](./plugins/zapier/rules/zapier-lifecycle.mdc))
+- **Brand assets** ([`assets/`](./plugins/zapier/assets/))
 
----
+What's **not** here:
 
-## Key Features
+- The MCP server itself — hosted at `mcp.zapier.com` (closed source)
+- The action catalog — managed at [mcp.zapier.com](https://mcp.zapier.com)
+- Product documentation — at [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home.md)
 
-- **9,000+ App Connections** — Access Zapier's massive library of pre-built integrations
-- **40,000+ Actions** — Enable specific tasks and searches across apps
-- **Natural Language** — No complex commands needed
-- **Secure by Default** — Authentication, encryption, and rate limiting handled by Zapier
-- **Multiple Client Support** — Works with Claude, ChatGPT, Cursor, Windsurf, and more
+For a routing guide to specific skills, rules, and manifests, see [AGENTS.md](./AGENTS.md).
 
----
+## Install
 
-## Getting Started
+### Claude Code
 
-**1. Generate your credentials**
+If you've already added Anthropic's official Claude Code plugin marketplace ([`anthropics/claude-plugins-official`](https://github.com/anthropics/claude-plugins-official)), install directly:
 
-Visit [mcp.zapier.com](https://mcp.zapier.com) to set up your server. Two auth options are available:
+```
+/plugin install zapier@claude-plugins-official
+```
 
-- **API Key** — Best for personal use and local development. Generate one at [mcp.zapier.com](https://mcp.zapier.com).
-- **OAuth** — Best for building apps where end users connect their own Zapier account. Use the connect URL: `https://mcp.zapier.com/api/v1/connect`
+Otherwise, add this repo as the marketplace first:
 
-**2. Connect your MCP client**
+```
+/plugin marketplace add zapier/zapier-mcp
+/plugin install zapier@zapier-plugins
+```
 
-Point your AI client at your Zapier MCP server URL. See client-specific setup guides at [mcp.zapier.com](https://mcp.zapier.com).
+### Cursor
 
-**3. Add actions to your server**
+Open [cursor.com/marketplace/zapier](https://cursor.com/marketplace/zapier) and click **Install**.
 
-Visit [mcp.zapier.com](https://mcp.zapier.com) to browse and enable specific actions. Each action you add becomes a callable tool in your AI client.
+### GitHub Copilot CLI
 
----
+```
+copilot plugin marketplace add zapier/zapier-mcp
+copilot plugin install zapier@zapier-plugins
+```
 
-## Built-in Tools
+### Kiro
 
-Zapier MCP servers operate in one of two modes. Your server's mode determines which built-in tools are available.
+Browse to [kiro.dev/powers](https://kiro.dev/powers), find Zapier, and click **Add to Kiro**. Powers register through the IDE — no command-line setup. The catalog entry is mirrored at [`kirodotdev/powers`](https://github.com/kirodotdev/powers).
 
-### Agentic (Beta)
+### Any other MCP-compatible client
 
-The Agentic configuration is currently in Beta and being rolled out to all users. Agentic servers provide 14 static meta-tools for managing and executing actions entirely within the chat experience:
+Add to your client's MCP config:
 
-| Tool | Category | Description |
-|------|----------|-------------|
-| `list_enabled_zapier_actions` | Action Management | See all your currently enabled actions |
-| `discover_zapier_actions` | Action Management | Search for apps and actions available to add |
-| `enable_zapier_action` | Action Management | Enable a specific action as a tool |
-| `disable_zapier_action` | Action Management | Disable an action you no longer need |
-| `auto_provision_mcp` | Action Management | Auto-setup tools from your existing Zapier connections |
-| `execute_zapier_read_action` | Execution | Run a read/search action (e.g., find an email, look up a contact) |
-| `execute_zapier_write_action` | Execution | Run a write action (e.g., send a message, create a task) |
-| `get_configuration_url` | Configuration | Get the URL to your Zapier MCP config page |
-| `list_zapier_skills` | Skills | List saved Zapier skills/workflows |
-| `get_zapier_skill` | Skills | Retrieve a specific skill |
-| `create_zapier_skill` | Skills | Create a new skill |
-| `update_zapier_skill` | Skills | Update an existing skill |
-| `delete_zapier_skill` | Skills | Delete a skill |
-| `send_feedback` | Feedback | Send feedback to Zapier |
+```json
+{
+  "mcpServers": {
+    "zapier": {
+      "type": "http",
+      "url": "https://mcp.zapier.com/api/v1/connect"
+    }
+  }
+}
+```
 
-### Classic
+Then sign in at [mcp.zapier.com](https://mcp.zapier.com) when prompted.
 
-Classic servers expose one built-in tool alongside your configured action tools:
+## After install
 
-| Tool | Description |
-|------|-------------|
-| `get_configuration_url` | Returns the URL to add/edit/remove actions from this server |
+1. **Enable actions** at [mcp.zapier.com](https://mcp.zapier.com) — each enabled action becomes a tool your AI can call.
+2. **Trust but verify writes.** The lifecycle rules require explicit user confirmation before any write action runs. Read actions don't need confirmation.
+3. **Run a health check.** Ask your agent to "check Zapier status" to invoke the [`zapier-status` skill](./plugins/zapier/skills/zapier-status/SKILL.md) and see what's configured.
 
----
+## Downstream marketplaces
 
-## How Actions Work
+This repo is the source of truth for the plugin. It's also vendored or mirrored into the following marketplaces:
 
-### Agentic (Beta)
+- [`anthropics/claude-plugins-official`](https://github.com/anthropics/claude-plugins-official) — Anthropic's curated Claude Code marketplace (vendors `plugins/zapier/` via `git-subdir` pinned to `main`)
+- [`anthropics/knowledge-work-plugins`](https://github.com/anthropics/knowledge-work-plugins) — Anthropic's Claude Cowork marketplace (vendors `plugins/zapier/` via `git-subdir` pinned to `main`)
+- [`kirodotdev/powers`](https://github.com/kirodotdev/powers) — Kiro's Powers catalog, browsable at [kiro.dev/powers](https://kiro.dev/powers); mirrors `POWER.md` and the steering files
+- [`cursor/mcp-servers`](https://github.com/cursor/mcp-servers/tree/main/servers/zapier) — Cursor's MCP server registry, surfaced at [cursor.com/marketplace/zapier](https://cursor.com/marketplace/zapier)
 
-Actions are managed and executed directly in chat. Use `discover_zapier_actions` to find available apps, `enable_zapier_action` to add one, and `execute_zapier_read_action` / `execute_zapier_write_action` to run it. Your AI can also call `list_enabled_zapier_actions` at any time to see what's currently available.
+## Documentation & support
 
-### Classic
-
-When you add an action at [mcp.zapier.com](https://mcp.zapier.com), it gets exposed as a dedicated tool on your MCP server. Your AI can then call it directly.
-
-**Example:** Enable the "Gmail - Send Email" action, and your AI gains a `gmail_send_email` tool it can invoke with the right parameters (to, subject, body) whenever you ask it to send an email.
-
-The more actions you enable, the more capable your AI becomes. You can build a focused server with just a handful of tools, or a broad one that spans your entire stack.
-
----
-
-## Plugins
-
-This repo also hosts official Zapier plugins for AI workflows. Each plugin is a standalone directory under `plugins/` with its own manifest.
-
-| Plugin | Category | Description |
-|--------|----------|-------------|
-| [Zapier](plugins/zapier/) | Productivity | Connect 9,000+ apps to your AI workflow. Discover, enable, and execute Zapier actions directly from your client. Includes onboarding skills, status tools, and safety rules. |
+- **Product overview**: [zapier.com/mcp](https://zapier.com/mcp)
+- **Documentation**: [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home.md)
+- **Support**: [help.zapier.com](https://help.zapier.com)
+- **For AI agents working in this repo**: [AGENTS.md](./AGENTS.md)
+- **For contributors**: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ---
 
-## Resources
-
-- **[🤖 MCP Plugins →](plugins/)** — Official plugins in this repo
-- **[🤖 MCP Skills →](plugins/zapier/skills/)** — Companion skills for AI clients
-- **[📖 Developer Documentation →](https://docs.zapier.com/mcp/home)** — API references and integration guides
-- **[🆘 Support →](https://mcp.zapier.app/home)** — Get help with Zapier MCP
-
----
-
-*Zapier MCP is part of the [Model Context Protocol](https://modelcontextprotocol.io/) ecosystem*
+*Zapier MCP is part of the [Model Context Protocol](https://modelcontextprotocol.io/) ecosystem.*
