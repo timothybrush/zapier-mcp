@@ -1,1 +1,1 @@
-../plugins/zapier/skills/zapier-status/SKILL.md
+../../plugins/zapier/skills/zapier-status/SKILL.md
