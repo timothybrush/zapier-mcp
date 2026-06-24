@@ -19,6 +19,7 @@ https://github.com/user-attachments/assets/8304058f-67da-40b9-bc4f-5095b2817d61
 
 - **Per-client plugin manifests** for [Claude Code](./plugins/zapier/.claude-plugin/plugin.json), [Cursor](./plugins/zapier/.cursor-plugin/plugin.json), and [GitHub Copilot CLI](./plugins/zapier/.github/plugin/plugin.json), under `plugins/zapier/`. Installing the plugin also registers the hosted MCP server with your client — that's why `zapier` shows up under `/mcp` after install, via [`.mcp.json`](./plugins/zapier/.mcp.json).
 - **A Kiro Power manifest** at [`POWER.md`](./POWER.md) for [Kiro.dev](https://kiro.dev) consumption
+- **An MCP Registry manifest** at [`server.json`](./server.json) so the hosted server is discoverable in the [official MCP Registry](https://registry.modelcontextprotocol.io)
 - **Onboarding skills** for auth, action selection, and health checks ([`skills/`](./plugins/zapier/skills/))
 - **Lifecycle rules** covering server-mode detection and the read/write safety model ([`zapier-lifecycle.mdc`](./plugins/zapier/rules/zapier-lifecycle.mdc))
 - **Brand assets** ([`assets/`](./plugins/zapier/assets/))

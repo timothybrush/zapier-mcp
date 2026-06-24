@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "com.zapier/mcp",
+  "title": "Zapier MCP Server",
+  "description": "Connect 9,000+ apps to your AI workflow via Zapier's hosted MCP server.",
+  "websiteUrl": "https://zapier.com/mcp",
+  "repository": {
+    "url": "https://github.com/zapier/zapier-mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.zapier.com/api/v1/connect"
+    }
+  ]
+}
