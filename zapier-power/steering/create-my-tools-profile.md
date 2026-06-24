@@ -1,1 +1,1 @@
-../plugins/zapier/skills/create-my-tools-profile/SKILL.md
+../../plugins/zapier/skills/create-my-tools-profile/SKILL.md
