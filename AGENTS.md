@@ -81,6 +81,7 @@ If the user has zero actions configured, trigger the [zapier-setup skill](./plug
 | Cursor plugin manifest | [plugins/zapier/.cursor-plugin/plugin.json](./plugins/zapier/.cursor-plugin/plugin.json) |
 | GitHub Copilot CLI plugin manifest | [plugins/zapier/.github/plugin/plugin.json](./plugins/zapier/.github/plugin/plugin.json) |
 | Kiro Power manifest | [POWER.md](./POWER.md) |
+| MCP Registry manifest | [server.json](./server.json) |
 | LLM discovery index | [llms.txt](./llms.txt) |
 | Repo overview for humans | [README.md](./README.md) |
 | How to contribute | [CONTRIBUTING.md](./CONTRIBUTING.md) |
