@@ -1,4 +1,4 @@
-# zapier-mcp
+# Zapier MCP Server Plugin
 
 > Official plugin distribution for [Zapier MCP](https://docs.zapier.com/mcp/home). Install the plugin in your AI client and your agent gains access to 9,000+ apps and 40,000+ actions via Zapier's hosted Model Context Protocol server.
 
