@@ -69,6 +69,10 @@ Once the plugin is loaded, the rest of your guidance comes from the plugin itsel
 
 If the user has zero actions configured, trigger the [zapier-setup skill](./plugins/zapier/skills/zapier-setup/SKILL.md) ("setup zapier") to walk them through enabling actions.
 
+## Fetching Zapier docs
+
+Any `https://docs.zapier.com/<path>` page has a raw-markdown mirror — append `.md` to the URL to get it (e.g. `https://docs.zapier.com/mcp/home.md`). Prefer the `.md` form when fetching docs programmatically: it's smaller, renders cleanly in chat, and skips the marketing chrome.
+
 ## Where to find what
 
 | Need | File |

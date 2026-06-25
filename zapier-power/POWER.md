@@ -118,7 +118,7 @@ Each enabled action becomes its own MCP tool named `app_action_name` (e.g., `sla
 
 ## License and support
 
-This power integrates with [Zapier MCP](https://zapier.com/mcp). The plugin distribution is MIT-licensed.
+This power integrates with [Zapier MCP](https://docs.zapier.com/mcp/home). The plugin distribution is MIT-licensed.
 
 - [Privacy Policy](https://zapier.com/privacy)
 - [Support](https://zapier.com/support)
