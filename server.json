@@ -1,9 +1,9 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.zapier/mcp",
-  "title": "Zapier MCP Server",
-  "description": "Connect 9,000+ apps to your AI workflow via Zapier's hosted MCP server.",
-  "websiteUrl": "https://zapier.com/mcp",
+  "title": "Zapier MCP server",
+  "description": "Hosted MCP server connecting AI assistants to 9,000+ apps and 40,000+ actions via Zapier.",
+  "websiteUrl": "https://docs.zapier.com/mcp/home",
   "repository": {
     "url": "https://github.com/zapier/zapier-mcp",
     "source": "github"
