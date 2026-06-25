@@ -1,6 +1,6 @@
 # Zapier Plugin
 
-Connects your AI client to [Zapier MCP](https://zapier.com/mcp) — Zapier's hosted Model Context Protocol server. Configure your actions at [mcp.zapier.com](https://mcp.zapier.com), and each one becomes a tool your AI can call directly.
+Connects your AI client to [Zapier MCP](https://docs.zapier.com/mcp/home) — Zapier's hosted Model Context Protocol server. Configure your actions at [mcp.zapier.com](https://mcp.zapier.com), and each one becomes a tool your AI can call directly.
 
 ## Quick Start
 
@@ -31,12 +31,12 @@ Zapier MCP servers run in one of two modes; the plugin detects which automatical
 - **Agentic** — Action discovery and execution are managed in chat through built-in meta-tools (`list_enabled_zapier_actions`, `discover_zapier_actions`, `execute_zapier_read_action`, etc.).
 - **Classic** — Each enabled action is exposed as a dedicated tool named `app_action_name` (e.g., `gmail_send_email`, `slack_find_message`).
 
-For the full mode-specific tool reference, see [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home.md).
+For the full mode-specific tool reference, see [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home).
 
 ## Links
 
 - [Zapier MCP Dashboard](https://mcp.zapier.com) — Manage your server, authenticate apps, view connected tools
-- [Zapier MCP documentation](https://docs.zapier.com/mcp/home.md) — Full product docs
+- [Zapier MCP documentation](https://docs.zapier.com/mcp/home) — Full product docs
 - [Zapier status](https://status.zapier.com) — Check for outages
 
 ## Support

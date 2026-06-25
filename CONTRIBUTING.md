@@ -1,6 +1,6 @@
 # Contributing to Zapier MCP
 
-Thanks for considering a contribution. This repo distributes plugin manifests, skills, and rules for [Zapier MCP](https://zapier.com/mcp) — the server itself is closed source.
+Thanks for considering a contribution. This repo distributes plugin manifests, skills, and rules for [Zapier MCP](https://docs.zapier.com/mcp/home) — the server itself is closed source.
 
 **In scope:** fixes to plugin manifests, skills, rules, brand assets, and docs in this repo.
 **Out of scope:** server behavior, app catalog, billing, or auth — file those with [Zapier Support](https://help.zapier.com).
