@@ -9,45 +9,30 @@ Scan the user's configured Zapier MCP tools and generate a personalized instruct
 
 This is the "post-onboarding" step: the user has already added tools via the setup skill, and now we crystallize that into persistent instructions.
 
+For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
+
 ## Prerequisite: Verify tools exist
 
-First, determine the mode by checking if `list_enabled_zapier_actions` is available as a tool.
-
-**Agentic mode:** Call `list_enabled_zapier_actions`. If it returns an empty list, **stop here** and redirect — call `get_zapier_skill` with name `"zapier-mcp-onboarding"` to get tools configured first. Do not continue with the steps below.
-
-**Classic mode:** Check that action tools are available (tools like `slack_send_channel_message`, `gmail_find_email` — not just the built-in `get_configuration_url`). If no action tools are configured, **stop here** and trigger the **zapier-setup** skill instead. Do not continue with the steps below.
-
-If no tools exist at all:
+Check the available Zapier MCP tools. If no Zapier action tools are available — only configuration tools, or nothing at all — **stop here** and trigger the **zapier-setup** skill instead.
 
 "You don't have any tools set up yet, so there's nothing to build a profile from. Let's get some tools configured first."
 
 ## Step 1: Inventory enabled tools
 
-### Agentic mode
+Inspect the available Zapier MCP tools. The exact surface depends on the server's configuration — some servers expose a meta-tool that returns the action inventory, others expose each configured action as its own named tool. Use whichever signal is available.
 
-Call `list_enabled_zapier_actions` to get the full list of enabled actions. Parse the returned actions into a structured list:
+Parse what's available into a structured list:
 
-- **App name**: from the action's app field or description
-- **Action name**: the human-readable action name from the response
-- **Action identifier**: the ID or reference used when calling `execute_zapier_read_action` / `execute_zapier_write_action`
+- **App name**: from each action's app field or tool description (e.g., "Send a **Slack** channel message" → Slack). Prefer the description as the authoritative source — multi-word app names like `google_calendar` are ambiguous to parse from the tool name alone.
+- **Action name**: the human-readable action name
+- **Action identifier**: the value used when invoking the action (an ID for meta-tool surfaces, a tool name for per-action surfaces)
 - **Read vs write**: infer from the action name — find/search/get/list/lookup = read, send/create/update/add/delete = write
 
-Exclude the 14 static meta-tools from the profile — only include the user's enabled actions.
-
-### Classic mode
-
-Inspect the available Zapier MCP tools. Each configured action is its own tool with a name following the pattern `app_action_name` (e.g., `slack_send_channel_message`, `gmail_find_email`). The built-in `get_configuration_url` tool should be excluded from the profile.
-
-Parse the available tools into a structured list:
-
-- **App name**: derived from the tool description (e.g., "Get info about a **Slack** conversation" → Slack). The tool name also starts with the app prefix (e.g., `slack_`, `gmail_`, `jira_`), but use the description as the authoritative source since multi-word app names like `google_calendar` are ambiguous to parse from the tool name alone.
-- **Action name**: the part of the tool name after the app prefix, converted to human-readable form (replace underscores with spaces, title case)
-- **Tool name**: the full tool name as-is (used for the technical identifier in the profile)
-- **Read vs write**: infer from the action name — find/search/get/list/lookup = read, send/create/update/add/delete = write
+Exclude configuration and other meta-tools from the profile — only include the user's enabled actions.
 
 ## Step 2: Group and analyze
 
-Group actions by app (using the app name from each tool's description). For each app, identify:
+Group actions by app. For each app, identify:
 
 - **Read/search actions**: things the AI can look up (find emails, get documents, search issues)
 - **Write actions**: things the AI can do (send messages, create issues, update records)
@@ -103,9 +88,7 @@ alwaysApply: true
 
 ### Profile content (shared across all clients)
 
-**Agentic mode** — actions are executed via `execute_zapier_read_action` and `execute_zapier_write_action`, not as individual tool calls. The profile should reference action identifiers used with those execute tools.
-
-**Classic mode** — actions are individual tools called directly by name (e.g., `slack_send_channel_message`).
+Use whichever identifier matches the server's surface — an action ID for meta-tool surfaces, a tool name for per-action surfaces.
 
 ```markdown
 # My Zapier tools
@@ -176,7 +159,7 @@ To update this profile after adding new tools, just say 'update my tools profile
 If the user says "update my tools profile" and the file already exists:
 
 1. Read the existing file
-2. Get the current tool inventory (Agentic: call `list_enabled_zapier_actions`; Classic: inspect available MCP tools)
+2. Get the current tool inventory by inspecting available Zapier MCP tools
 3. Diff what's new vs. what's already documented
 4. Update the file, preserving any custom edits the user made to the preferences section
 5. Note what changed: "Added 3 new Google Sheets actions. Your custom preferences were preserved."

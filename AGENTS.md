@@ -65,7 +65,7 @@ Then have the user sign in at [mcp.zapier.com](https://mcp.zapier.com) when prom
 
 ## After install
 
-Once the plugin is loaded, the rest of your guidance comes from the plugin itself — start with [`plugins/zapier/rules/zapier-lifecycle.mdc`](./plugins/zapier/rules/zapier-lifecycle.mdc). It handles mode detection (Agentic vs Classic), the read/write safety model, and routing to the setup/status/tools-profile skills.
+Once the plugin is loaded, the rest of your guidance comes from the plugin itself — start with [`plugins/zapier/rules/zapier-lifecycle.mdc`](./plugins/zapier/rules/zapier-lifecycle.mdc). It covers the read/write safety model and routing to the setup/status/tools-profile skills. For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
 
 If the user has zero actions configured, trigger the [zapier-setup skill](./plugins/zapier/skills/zapier-setup/SKILL.md) ("setup zapier") to walk them through enabling actions.
 
@@ -77,7 +77,7 @@ Any `https://docs.zapier.com/<path>` page has a raw-markdown mirror — append `
 
 | Need | File |
 |---|---|
-| Lifecycle rules + safety model + mode detection | [plugins/zapier/rules/zapier-lifecycle.mdc](./plugins/zapier/rules/zapier-lifecycle.mdc) |
+| Lifecycle rules + safety model + skill routing | [plugins/zapier/rules/zapier-lifecycle.mdc](./plugins/zapier/rules/zapier-lifecycle.mdc) |
 | Setup walkthrough | [plugins/zapier/skills/zapier-setup/SKILL.md](./plugins/zapier/skills/zapier-setup/SKILL.md) |
 | Status / health checks | [plugins/zapier/skills/zapier-status/SKILL.md](./plugins/zapier/skills/zapier-status/SKILL.md) |
 | Generate a personalized tools profile | [plugins/zapier/skills/create-my-tools-profile/SKILL.md](./plugins/zapier/skills/create-my-tools-profile/SKILL.md) |

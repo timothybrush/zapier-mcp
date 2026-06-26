@@ -7,7 +7,7 @@ description: Check the health of your Zapier MCP setup. Three modes — health c
 
 Three modes for monitoring and maintaining a Zapier MCP setup. Determine the mode from context, or ask if unclear.
 
-**First, detect the server mode:** If `list_enabled_zapier_actions` is available, the user is on **Agentic mode**. Otherwise, the user is on **Classic mode** where each configured action is its own MCP tool (e.g., `slack_send_channel_message`, `gmail_find_email`).
+For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
 
 ## Mode 1: Health check
 
@@ -17,13 +17,11 @@ A quick dashboard view of the current state.
 
 ### Steps
 
-1. Check the available tools:
-   - **Agentic mode:** Call `list_enabled_zapier_actions` to get the inventory of enabled actions.
-   - **Classic mode:** Inspect the available Zapier MCP tools. Each action tool follows the pattern `app_action_name`. The built-in `get_configuration_url` tool is always present when the server is connected.
+1. Inspect the available Zapier MCP tools. The exact surface depends on the server's configuration — some servers expose meta-tools that report the action inventory, others expose each configured action as its own named tool. Use whichever signal is available.
 
-2. If no Zapier tools are available: report the connection status and suggest running **zapier-setup** (Classic) or calling `get_zapier_skill` with name `"zapier-mcp-onboarding"` (Agentic).
+2. If no Zapier tools are available: report the connection status and suggest running **zapier-setup**.
 
-3. If tools/actions are available, build a summary by grouping actions by app (Agentic: from the `list_enabled_zapier_actions` response; Classic: from each tool's description):
+3. If tools are available, build a summary by grouping them by app:
 
 **For each app**, show:
 
@@ -59,12 +57,10 @@ Find inefficiencies: duplicate actions, unused tools, conflicts with native MCP 
 
 ### Steps
 
-1. Get the full inventory:
-   - **Agentic mode:** Call `list_enabled_zapier_actions`.
-   - **Classic mode:** Inspect the available Zapier MCP action tools.
+1. Get the full inventory by inspecting the available Zapier MCP tools.
 
 2. **Check for duplicates within Zapier MCP:**
-   - Multiple actions for the same app that do similar things (e.g., both `slack_find_message` and `slack_search_messages`)
+   - Multiple actions for the same app that do similar things (e.g., both a "find message" and a "search messages" Slack action)
    - Recommend removing the less useful one
 
 3. **Check for conflicts with native MCP servers:**
@@ -74,7 +70,7 @@ Find inefficiencies: duplicate actions, unused tools, conflicts with native MCP 
 
 4. **Check for unused or low-value actions:**
    - Actions that are rarely useful as defaults (e.g., very specific write actions that are only needed occasionally)
-   - Suggest removing actions that can be re-added on demand through the web UI
+   - Suggest removing actions that can be re-added on demand
 
 5. **Show the audit report:**
 
@@ -95,9 +91,7 @@ Recommended removals: 4 actions
 Want me to show you how to clean these up?
 ```
 
-6. If the user says yes:
-   - **Agentic mode:** Use `disable_zapier_action` to remove the recommended actions directly in chat.
-   - **Classic mode:** Call `get_configuration_url` and direct them to the web UI to remove the recommended actions. List exactly which ones to remove.
+6. If the user says yes, direct them to [mcp.zapier.com](https://mcp.zapier.com) to remove the recommended actions (or use the server's in-chat disable tool if available). List exactly which ones to remove.
 
 ## Mode 3: Diagnose
 
@@ -111,13 +105,11 @@ Systematic troubleshooting with error pattern matching.
 
 2. **Run diagnostics in order:**
 
-   a. **Connection check:** Try calling `get_configuration_url` or any available Zapier tool. If nothing works, the problem is server-level (auth, config, network).
+   a. **Connection check:** Try calling any available Zapier tool. If nothing works, the problem is server-level (auth, config, network).
 
-   b. **Action check:**
-      - **Agentic mode:** Call `list_enabled_zapier_actions` to see if the action is enabled. If not, use `discover_zapier_actions` to find it and `enable_zapier_action` to add it.
-      - **Classic mode:** Is the specific action tool available? If not, the user needs to add it through the web UI.
+   b. **Action check:** Is the specific action available on this server? If not, the user needs to add it at mcp.zapier.com (or via the server's in-chat discovery tools if available).
 
-   c. **Auth check:** Try calling a read action for the affected app (Agentic: `execute_zapier_read_action`; Classic: the specific read tool). If it returns an auth error, the app connection needs re-authentication.
+   c. **Auth check:** Try calling a read action for the affected app. If it returns an auth error, the app connection needs re-authentication.
 
    d. **Parameter check:** Review the failing call's parameters. Common issues:
    - Missing required fields
@@ -130,7 +122,7 @@ Systematic troubleshooting with error pattern matching.
 | ------------------------------------------ | ----------------------------------- | ------------------------------------------------------------- |
 | All tools fail                             | Server auth expired                 | Re-authenticate at mcp.zapier.com                             |
 | One app fails, others work                 | App-level auth expired              | Re-connect that specific app                                  |
-| Tool not found / unavailable               | Action not configured               | Agentic: `discover_zapier_actions` + `enable_zapier_action`. Classic: direct user to `get_configuration_url` to add it |
+| Tool not found / unavailable               | Action not configured               | Direct user to mcp.zapier.com to add it                       |
 | "invalid params"                           | Wrong fields or format              | Check the tool's parameter schema                             |
 | Results are empty but expected data exists | Search too narrow or wrong field    | Broaden the search or check field names                       |
 | Timeout on execute                         | Server overloaded or action is slow | Retry once, then report if persistent                         |
@@ -150,6 +142,6 @@ Systematic troubleshooting with error pattern matching.
 
 ## General notes
 
-- Always check available Zapier MCP tools as the first diagnostic step in any mode. On Agentic, this means calling `list_enabled_zapier_actions`. On Classic, this means inspecting the available tool names.
+- Always inspect the available Zapier MCP tools as the first diagnostic step in any mode.
 - Don't dump raw error messages. Translate them into plain language.
 - If a problem is beyond what the skill can diagnose (server-side bug, API outage), say so and suggest checking [status.zapier.com](https://status.zapier.com) or contacting support.
