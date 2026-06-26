@@ -65,7 +65,7 @@ Then have the user sign in at [mcp.zapier.com](https://mcp.zapier.com) when prom
 
 ## After install
 
-Once the plugin is loaded, the rest of your guidance comes from the plugin itself — start with [`plugins/zapier/rules/zapier-lifecycle.mdc`](./plugins/zapier/rules/zapier-lifecycle.mdc). It covers the read/write safety model and routing between the onboard, demo, explore, and status skills. For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
+Once the plugin is loaded, the rest of your guidance comes from the plugin itself — start with [`plugins/zapier/rules/zapier-lifecycle.mdc`](./plugins/zapier/rules/zapier-lifecycle.mdc). It covers the read/write safety model and routing between the onboard, demo, explore, and status skills. For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home).
 
 If the user is brand new, trigger the [zapier-onboard skill](./plugins/zapier/skills/zapier-onboard/SKILL.md) ("onboard zapier") to introduce Zapier MCP and walk them through connecting the server.
 

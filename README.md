@@ -2,10 +2,9 @@
 
 The official home of the [Zapier MCP](https://docs.zapier.com/mcp/home) plugin. We package it and ship it to every marketplace we support, so your favorite AI agent can connect to your 9,000+ apps the moment you install. The MCP server itself lives at `mcp.zapier.com`. This repo is the plugin on your AI's side, the part that turns the raw catalog into something your AI actually knows how to use.
 
-https://github.com/user-attachments/assets/8304058f-67da-40b9-bc4f-5095b2817d61
+**Get started with the plugin** → [docs.zapier.com/mcp/clients](https://docs.zapier.com/mcp/clients)
 
-- **Get started with the plugin** → [`plugins/zapier/README.md`](./plugins/zapier/README.md)
-- **Browse the full docs** → [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home)
+https://github.com/user-attachments/assets/8304058f-67da-40b9-bc4f-5095b2817d61
 
 ## What's in this repo
 

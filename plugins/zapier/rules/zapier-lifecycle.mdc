@@ -7,7 +7,7 @@ alwaysApply: true
 
 This workspace uses Zapier MCP to connect your AI to external apps. These rules govern how you interact with Zapier tools.
 
-For how the Zapier MCP server itself works — available tools, server configuration, action management — see [docs.zapier.com/mcp](https://docs.zapier.com/mcp). This file covers only how to *use* it well from inside a chat.
+For how the Zapier MCP server itself works — available tools, server configuration, action management — see [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home). This file covers only how to *use* it well from inside a chat.
 
 ## First-time setup
 

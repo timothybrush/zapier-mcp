@@ -19,7 +19,7 @@ Connect your AI assistant to 9,000+ apps — Slack, Gmail, Google Calendar, Jira
 - **Personalized tool profiles**: Generate persistent AI instructions tailored to the specific set of actions you have enabled
 - **OAuth authentication**: No API keys required — authenticate once via mcp.zapier.com and per-app OAuth flows
 
-For how the Zapier MCP server itself works — tool surface, configuration, action management — see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
+For how the Zapier MCP server itself works — tool surface, configuration, action management — see [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home).
 
 ## When to Use This Power
 
@@ -68,7 +68,7 @@ After installing this power, connect the Zapier MCP server:
 - **Connection:** `https://mcp.zapier.com/api/v1/connect`
 - **Authorization:** OAuth via mcp.zapier.com (no API key required)
 
-For the tool surface exposed by the server, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
+For the tool surface exposed by the server, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home).
 
 ## MCP Configuration
 

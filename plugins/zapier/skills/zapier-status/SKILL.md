@@ -7,7 +7,7 @@ description: Check the health of your Zapier MCP setup. Three modes — health c
 
 Three modes for monitoring and maintaining a Zapier MCP setup. Determine the mode from context, or ask if unclear.
 
-For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
+For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home).
 
 ## Mode 1: Health check
 

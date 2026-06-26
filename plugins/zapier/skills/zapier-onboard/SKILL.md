@@ -7,7 +7,7 @@ description: Onboard a new user to Zapier MCP — introduce what it can do, walk
 
 Introduce Zapier MCP, get the user authenticated, then guide them through the appropriate setup flow.
 
-For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
+For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home).
 
 ## Step 1: Introduction
 

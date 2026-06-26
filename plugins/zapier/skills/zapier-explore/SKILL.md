@@ -9,7 +9,7 @@ Help the user expand beyond the first action — figure out what Zapier MCP can 
 
 This is the natural follow-on to `zapier-demo`. Demo proves one action works; explore turns that into a real toolkit for the user's day-to-day.
 
-For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
+For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home).
 
 ## When to use vs. other skills
 
