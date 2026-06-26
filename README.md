@@ -4,7 +4,7 @@ The official home of the [Zapier MCP](https://docs.zapier.com/mcp/home) plugin! 
 
 Zapier MCP is a hosted server that connects your AI to 9,000+ apps. Send messages, pull data, trigger workflows. All in plain English.
 
-This plugin is the part that lives in your AI client. Install it from your client's marketplace and your assistant arrives knowing how to use Zapier well, with guided onboarding, a quick demo, and skills tailored to your role. No manual config required.
+This plugin is the part that lives in your AI client. Install it from your client's marketplace and your assistant arrives knowing how to use Zapier well, with guided onboarding, a quick demo, and skills tailored to your role.
 
 **Get started with the plugin** → [docs.zapier.com/mcp/clients](https://docs.zapier.com/mcp/clients)
 
