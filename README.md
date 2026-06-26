@@ -1,6 +1,10 @@
 # Zapier MCP Plugin Distribution
 
-The official home of the [Zapier MCP](https://docs.zapier.com/mcp/home) plugin. We package it and ship it to every marketplace we support, so your favorite AI agent can connect to your 9,000+ apps the moment you install. The MCP server itself lives at `mcp.zapier.com`. This repo is the plugin on your AI's side, the part that turns the raw catalog into something your AI actually knows how to use.
+The official home of the [Zapier MCP](https://docs.zapier.com/mcp/home) plugin! ⚡
+
+Zapier MCP is a hosted server that connects your AI to 9,000+ apps. Send messages, pull data, trigger workflows. All in plain English.
+
+This plugin is the part that lives in your AI client. Install it from your client's marketplace and your assistant arrives knowing how to use Zapier well, with guided onboarding, a quick demo, and skills tailored to your role. No manual config required.
 
 **Get started with the plugin** → [docs.zapier.com/mcp/clients](https://docs.zapier.com/mcp/clients)
 
