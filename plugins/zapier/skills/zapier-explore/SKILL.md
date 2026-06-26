@@ -1,19 +1,24 @@
 ---
-name: zapier-discover
-description: Discover Zapier MCP use cases tailored to the user's role and the apps they actually use. Asks a short interview about their work and tools, then suggests specific on-demand prompts they can say to their AI assistant — like "find me Jira tickets in this sprint" or "draft a follow-up to my last HubSpot contact." Use when the user asks "what can Zapier do for me", "suggest use cases", "I don't know where to start", "show me ideas", "recommend workflows", "help me figure out what to do with Zapier", "what should I enable", or "give me Zapier examples".
+name: zapier-explore
+description: Explore what Zapier MCP can do for the user — interview them about their role and the apps they live in, suggest specific use cases as on-demand prompts, then walk them through enabling the actions to make those use cases real. The natural next step after `zapier-demo`. Use when the user asks "what else can Zapier do for me", "set up more tools", "add a starter pack for my role", "what should I enable next", "suggest workflows", "help me figure out what to do with Zapier", "I don't know where to start", or "give me Zapier examples".
 ---
 
-# Zapier discover
+# Zapier explore
 
-Help the user figure out what Zapier MCP can actually do *for them* — based on their role, the apps they live in, and the tasks they keep redoing. Output specific, on-demand prompts they can say to their AI assistant, plus the actions they'd need to enable to make each prompt work.
+Help the user expand beyond the first action — figure out what Zapier MCP can do for them based on their role and apps, then walk them through enabling a starter set of actions tailored to that work.
+
+This is the natural follow-on to `zapier-demo`. Demo proves one action works; explore turns that into a real toolkit for the user's day-to-day.
 
 For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
 
-## When to use
+## When to use vs. other skills
 
-The user is unsure what Zapier can do for them, or doesn't know which actions to enable. They've installed the plugin but want to be pointed at concrete use cases instead of staring at the 9,000-app catalog.
+- **zapier-explore** (this skill) — *role-tailored expansion.* Interview + use cases + configuration.
+- **zapier-demo** — *one app, one action, run it live.* Run this first if the user hasn't seen Zapier work yet.
+- **zapier-onboard** — *pitch + connect.* Server-level authentication only. Run this before demo if the server isn't connected.
+- **zapier-status** — *health checks and audits* on an existing setup.
 
-If the user already knows what they want to enable and just needs the setup walkthrough, route to **zapier-setup** instead. If they already have actions enabled and want a profile, route to **create-my-tools-profile**.
+If the user hasn't run their first action yet, route to **zapier-demo** first — explore works best after a win.
 
 ## Step 1: Interview
 
@@ -21,7 +26,7 @@ Keep it short — two or three questions, not a survey. Adapt follow-ups based o
 
 Open with:
 
-> "I can help you figure out what to do with Zapier. Quick context first — what do you do for work, and what apps are you in every day?"
+> "Let's figure out what to add to your Zapier toolkit. Quick context first — what do you do for work, and what apps are you in every day?"
 
 Listen for:
 - **Role / function** (engineer, PM, sales, marketing, founder, support, creator, ops, recruiter, finance, exec, personal)
@@ -34,7 +39,7 @@ If they give you only role *or* only apps, ask one follow-up. If they give you b
 
 Don't push past three questions. Move on with what you've got.
 
-## Step 2: Generate use cases
+## Step 2: Suggest use cases
 
 Pick the **role library** below that best matches the user's answers (multiple is fine — combine for hybrid roles). For each, surface 4–6 use cases tailored to the apps they mentioned. If they named an app you don't have in the library, default to the closest equivalent (e.g., "Outlook" → use the Gmail patterns; "Monday.com" → use the Asana patterns).
 
@@ -44,28 +49,44 @@ For each use case, output:
 - **What it does** — one-line explanation
 - **Actions needed** — the specific Zapier actions they'd enable to make it work
 
-Format the output as a short prose block per use case, not a table. Group by category if you have 6+ use cases: *Save time on…*, *Stay in the loop on…*, *Stop copying between…*
+Format as a short prose block per use case, not a table. Don't list more than 6 use cases at once. If you have more, present them in waves — give 4, see if any land, then offer "want more?"
 
-Don't list more than 6 use cases at once. If you have more, present them in waves — give 4, see if any land, then offer "want more?"
+## Step 3: Pick and confirm
 
-## Step 3: Pick and enable
-
-For the use cases the user reacts to ("yes that one"), produce a consolidated **enable list**:
+For the use cases the user reacts to ("yes that one"), produce a consolidated **enable list** grouped by app:
 
 > "To make those work, you'll need to enable:
 > - **Slack:** Send Channel Message, Find Message
 > - **Jira:** Find Issue by Key, Create Issue
 > - **Google Calendar:** Find Events"
 
-Then offer the handoff:
+Cross-reference the **Recommended actions by app** table below to fill any gaps — aim for 2–4 actions per app (1–2 search, 1–2 write).
 
-> "Want me to walk you through enabling them? Run **/zapier-setup** to get them configured. Or, head to [mcp.zapier.com](https://mcp.zapier.com) to add them yourself."
+## Step 4: Walk them through enabling
 
-## Step 4: Try it live (optional)
+Direct the user to their Zapier dashboard:
 
-Once they confirm everything is enabled, demo *one* prompt right in the chat. Pick the simplest one. The "oh, this actually works" moment is the whole point.
+- If the server exposes a `get_configuration_url` tool, call it first and give them the direct link.
+- Otherwise, point them at [mcp.zapier.com](https://mcp.zapier.com).
 
-> "Now try it — say to me: '[their first prompt]' and I'll run it."
+Then tell them what to do:
+
+> "Open [that link], find your server, and add the actions in the list above. You'll also need to connect each app's account when prompted (OAuth). Come back and say **done** when everything is added."
+
+Wait for confirmation. If they hit issues:
+
+- **"It's not showing up after I added it"** — they need to restart their MCP client so it re-reads the tool list (Cursor: Cmd+Shift+P → "Reload Window"; Claude Desktop: quit and reopen; Claude Code: quit and restart).
+- **"It says I need to authenticate [App]"** — that's the OAuth flow on mcp.zapier.com. Have them complete it and retry.
+
+## Step 5: Verify
+
+Re-inspect the available Zapier MCP tools and confirm the new actions are present. If anything is missing, troubleshoot with the user — most often a client reload is enough.
+
+## Step 6: Celebrate and offer the next move
+
+Once everything is enabled, name the win and offer a natural next step:
+
+> "You're set up with [N] tools across [App list]. Try one now — say something like '[example prompt tailored to their setup]' and I'll run it. Or run **/zapier-status** anytime to check the health of your tools."
 
 ## Use case library
 
@@ -173,13 +194,34 @@ Don't read the user every use case verbatim. Pick the most relevant ones for the
 - "Find Drive files shared with me this week." *— Google Drive: Find File*
 - "Search my Notion workspace for [topic]." *— Notion: Find Page*
 
+## Recommended actions by app
+
+Use this as the reference when building the enable list in Step 3. Aim for 2–4 actions per app — one or two search actions and one or two write actions.
+
+| App             | Search actions                         | Write actions            |
+| --------------- | -------------------------------------- | ------------------------ |
+| Slack           | Find Message, Get Message              | Send Channel Message     |
+| Gmail           | Find Email                             | Send Email, Create Draft |
+| Google Calendar | Find Events                            | Create Detailed Event    |
+| Google Docs     | Get Document Content                   | Create Document          |
+| Google Sheets   | Get Data Range, Lookup Row             | Add Row                  |
+| Jira            | Find Issue by Key, Find Issues via JQL | Create Issue             |
+| Linear          | Find Issue                             | Create Issue             |
+| GitLab          | Find Merge Requests                    | (read-heavy by nature)   |
+| GitHub          | Find Issue, Find Pull Request          | Create Issue             |
+| HubSpot         | Find Contact, Find Company             | Create Contact           |
+| Notion          | Find Page, Find Database Item          | Create Page              |
+| Zoom            | Find Meeting                           | (read-heavy)             |
+| Coda            | Find Row                               | Create Row               |
+| Airtable        | Find Record                            | Create Record            |
+
 ## Handling edge cases
 
-- **App not in the library:** if the user names an app that isn't represented above (e.g., a niche or vertical tool), assume Zapier supports it — the catalog has 9,000+ apps. Default to "yes, Zapier supports [App]. Common patterns there are Find [Thing] and Create [Thing]." If you want to be sure before recommending it as a starter, tell the user to verify at [zapier.com/apps](https://zapier.com/apps).
+- **App not in the library:** assume Zapier supports it — the catalog has 9,000+ apps. Default to "yes, Zapier supports [App]. Common patterns there are Find [Thing] and Create [Thing]." If you want to confirm before recommending it, verify at [zapier.com/apps](https://zapier.com/apps).
 - **Multiple roles:** mix categories. A "founder doing marketing" gets a blend from Founder + Marketing. Don't force them into one.
-- **No app names given:** the user might just say "I'm a PM" without naming tools. Default to the most common stack for that role (PM → Slack, Jira, Notion, Google Calendar) and ask "does that stack match yours?"
-- **Personal / non-work context:** if they describe personal use (managing a home, side project, life admin), draw from **General productivity / personal** plus relevant app-specific suggestions (calendar, finance, fitness, smart home).
-- **Server in agentic mode** (`discover_zapier_actions` is available): if the user names something you're unsure about, you can silently call `discover_zapier_actions` to verify before recommending. Don't surface that detail unless the user asks.
+- **No app names given:** default to the most common stack for that role (PM → Slack, Jira, Notion, Google Calendar) and ask "does that stack match yours?"
+- **Personal / non-work context:** draw from **General productivity / personal** plus relevant app-specific suggestions (calendar, finance, fitness, smart home).
+- **In-chat discovery available** (`discover_zapier_actions` is exposed by the server): if the user names something you're unsure about, you can silently call `discover_zapier_actions` to verify before recommending. Don't surface that detail unless the user asks.
 
 ## Output template for use cases
 
@@ -191,15 +233,13 @@ When presenting a use case, use this shape — short prose, not a table row:
 >
 > *Actions to enable:* [App]: [Action], [Action]
 
-Group by category if you have 6+ use cases: *Save time on…*, *Stay in the loop on…*, *Stop copying between…*. Don't repeat the category labels in the output unless you're using them as section headers — they're navigation, not content.
-
 ## Gotchas
 
 - **Don't ask more than 3 interview questions.** Two is better. Users tune out after that.
 - **Don't dump the whole library.** Pick 4–6 use cases relevant to their context and surface them as natural recommendations.
 - **Don't list more than 6 use cases at once.** If you have more, offer them in waves: "Want more?"
 - **Personal-context users get General Productivity, not a role.** Someone managing a household isn't a "PM" — don't force them into a work role just because the library has more entries there.
-- **Don't dismiss apps not in the library.** Default to "yes, Zapier likely supports it" — the catalog has 9,000+ apps. If you want to confirm before recommending it as a starter, verify via `zapier.com/apps/{slug}.md` (see the `zapier-docs` skill for the URL pattern).
+- **Don't dismiss apps not in the library.** Default to "yes, Zapier likely supports it" — the catalog has 9,000+ apps.
 - **Frame as MCP prompts, not Zaps.** Zapier templates are written as triggered automations ("When X, then Y"). MCP usage is on-demand ("Say this to your AI"). Always translate.
 
 ## Tone

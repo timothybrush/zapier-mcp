@@ -1,9 +1,9 @@
 ---
-name: zapier-setup
-description: Set up Zapier MCP and add tools to your AI assistant. Introduces what Zapier can do, walks through authentication, then branches into the right flow — summary for healthy setups, reconnect for broken auth, onboarding for fresh installs, or config help when the server is missing. Use when getting started, troubleshooting connection issues, adding new tools, or when the user asks "what can I do now", "what can I do with Zapier", "show me how the Zapier plugin works", "what is Zapier MCP", "how does Zapier work", or "tell me about Zapier".
+name: zapier-onboard
+description: Onboard a new user to Zapier MCP — introduce what it can do, walk through authentication, and route into the right flow based on the state of their setup. Use when getting started, troubleshooting connection issues, or when the user asks "what is Zapier MCP", "how do I get started with Zapier", "set me up", "what can I do with Zapier", or "tell me about Zapier".
 ---
 
-# Zapier setup
+# Zapier onboard
 
 Introduce Zapier MCP, get the user authenticated, then guide them through the appropriate setup flow.
 
@@ -62,9 +62,9 @@ The server is connected and has actions configured. Show a summary and offer nex
 Everything's working. What would you like to do?"
 
 3. Offer options:
-   - "Add more tools" → direct the user to mcp.zapier.com (or call the server's configuration-URL tool if available) to add actions
+   - "Try one live" → trigger the **zapier-demo** skill for a first-action walkthrough
+   - "Add more tools" → trigger the **zapier-explore** skill to build out a role-tailored toolkit
    - "Run a health check" → trigger the **zapier-status** skill
-   - "Create my tools profile" → trigger the **create-my-tools-profile** skill
    - Or just start using the tools
 
 ## Branch: Auth broken
@@ -161,16 +161,14 @@ Tell the user which actions to add for their chosen apps, then wait for them to 
 
 After the user confirms, check the available Zapier MCP tools to see what was added. If new tools appeared, show a summary. If nothing changed, the user may need to reload their client (see "Reload instructions by client" below).
 
-### Step 4: Generate profile
+### Step 4: Wrap up
 
 Once everything is connected:
 
 1. Show a final summary of the setup.
-2. Offer to generate personalized instructions:
+2. Hand off to the natural next step:
 
-"Want me to create a tools profile? It teaches your AI exactly when and how to use each of these tools in future conversations."
-
-If yes, follow the **create-my-tools-profile** skill.
+"You're set up. Want to try one live? Run **/zapier-demo** to see one action work, or **/zapier-explore** if you want to keep building out the toolkit."
 
 ## MCP config by client
 

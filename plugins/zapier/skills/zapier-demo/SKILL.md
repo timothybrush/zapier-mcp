@@ -1,26 +1,26 @@
 ---
-name: zapier-getting-started
+name: zapier-demo
 description: Walk a new user through setting up their first Zapier action and running it live — the smallest possible win. Asks what app they use, recommends one read action to enable, guides them to mcp.zapier.com to add it, then demonstrates it working in the same chat. Use when the user asks "show me how Zapier works", "set up my first action", "give me a quick demo", "I want to try it", "what's the fastest way to see this work", "minimal setup", "hello world", or "smallest example".
 ---
 
-# Zapier getting started
+# Zapier demo
 
 Walk a new user through the smallest possible first win — one app, one read action, one prompt that actually runs. The whole flow should feel quick: a few minutes from "I'm curious" to "oh, that worked."
 
-This is the alternative to `zapier-setup` for users who don't want a starter pack — they want one thing working so they understand what Zapier MCP feels like.
+This is the natural next step after `zapier-onboard` for users who want to see Zapier work before configuring a full toolkit.
 
 ## When to use vs. other skills
 
-- **zapier-getting-started** (this skill) — *one app, one action, immediate demo.* Fastest path to "oh, this works."
-- **zapier-setup** — *full starter pack matched to a role* (dev, PM, sales, marketing, productivity). More setup, more capability.
-- **zapier-discover** — *role-based use case exploration.* Interview-driven, broader.
-- **zapier-docs** — *factual lookups.* "Tell me about [feature]."
+- **zapier-demo** (this skill) — *one app, one action, immediate demo.* Fastest path to "oh, this works."
+- **zapier-onboard** — *pitch + connect + diagnose.* Run this first if the server isn't connected yet.
+- **zapier-explore** — *role-tailored expansion.* Run this after demo to set up a full toolkit for the user's role.
+- **zapier-status** — *health checks and audits* on an existing setup.
 
-If the user says "show me," lean here. If they say "set me up properly," route to zapier-setup. If they say "what can it do?" — discover.
+If the user says "show me," lean here. If they haven't connected the server yet, route to zapier-onboard first.
 
 ## Step 1: Confirm the server is connected
 
-Inspect available Zapier MCP tools. If none exist, the server isn't authenticated yet — authenticate first via `mcp_auth` or the client's MCP settings (same pattern as `zapier-setup`'s connection step). Don't continue until at least the configuration tools are available.
+Inspect available Zapier MCP tools. If none exist, the server isn't authenticated yet — authenticate first via `mcp_auth` or the client's MCP settings (same pattern as `zapier-onboard`'s connection step). Don't continue until at least the configuration tools are available.
 
 Once connected, set the tone:
 
@@ -101,15 +101,15 @@ If the user names an app not on this list, default to a "Find [Thing]" pattern �
 
 ## Step 4: Walk them through enabling it
 
-Tell them exactly where to go and what to do:
+If the server exposes a `get_configuration_url` tool, call it first and give the user the direct link. Otherwise, point them at [mcp.zapier.com](https://mcp.zapier.com).
 
-> "Head to [mcp.zapier.com](https://mcp.zapier.com), find your server, and add the **[App] – [Action]** action. You'll also need to connect your [App] account when prompted (OAuth). Come back and say **done** when it's added."
+Then tell them what to do:
 
-If the server exposes a `get_configuration_url` tool, call it and give them the direct link instead of the generic mcp.zapier.com URL.
+> "Open [that link], find your server, and add the **[App] – [Action]** action. You'll also need to connect your [App] account when prompted (OAuth). Come back and say **done** when it's added."
 
 Wait for confirmation. If they hit issues:
 
-- **"It's not showing up after I added it"** — they may need to reload their MCP client (Cursor: Cmd+Shift+P → "Reload Window"; Claude Desktop: quit and reopen; Claude Code: `/mcp` to check status).
+- **"It's not showing up after I added it"** — they need to restart their MCP client so it re-reads the tool list (Cursor: Cmd+Shift+P → "Reload Window"; Claude Desktop: quit and reopen; Claude Code: quit and restart — `/mcp` shows status but won't re-fetch tools).
 - **"It says I need to authenticate [App]"** — that's the OAuth flow on mcp.zapier.com. Have them complete it and retry.
 
 Once they confirm, re-inspect tools and verify the action is now available.
@@ -151,8 +151,7 @@ When the action returns data, name the win:
 Then offer the natural next moves, one at a time — don't dump all the options:
 
 > "From here, a couple of directions:
-> - Want a starter set of actions for your role? → run **/zapier-setup**
-> - Want me to suggest specific workflows for what you do? → run **/zapier-discover**
+> - Want me to set up a full toolkit for your role? → run **/zapier-explore**
 > - Or just keep using this one and add more as you need them."
 
 ## Progress checklist
@@ -171,7 +170,7 @@ Track these as you go so nothing slips:
 
 - **Never recommend a write action for the first demo.** Read-only is the rule — write confirmations add friction at the exact moment we want a smooth "it works" experience.
 - **Don't dump the full app or action tables.** The 7-app list in Step 2 is the menu; the action table in Step 3 is fallback reference. The user sees one recommendation, not the buffet.
-- **If a tool doesn't appear after enabling, try a client reload first**, not re-authentication. Cursor: Cmd+Shift+P → "Reload Window." Claude Desktop: quit and reopen. Claude Code: `/mcp` to check status.
+- **If a tool doesn't appear after enabling, restart the client first**, not re-authentication. Cursor: Cmd+Shift+P → "Reload Window." Claude Desktop: quit and reopen. Claude Code: quit and restart (`/mcp` only shows status — it doesn't re-fetch tools).
 - **Sheets: Lookup Row needs the spreadsheet ID upfront.** It's the most-failed first demo because users don't have the ID handy. If they pick Sheets, ask them to grab a share link before adding the action.
 - **Slug accuracy matters.** `Google Calendar` → `google-calendar`, not `googlecalendar`. Get the slug right before fetching the marketing page or the lookup will 404 for the wrong reason.
 - **Don't declare "Zapier doesn't support [App]"** until both `zapier.com/apps/{slug}.md` and `zapier.com/apps/{slug}` HTML return 404. The `.md` mirror is spotty on some routes.

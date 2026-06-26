@@ -2,15 +2,26 @@
 
 > [Zapier MCP](https://docs.zapier.com/mcp/home) connects your AI assistant to 9,000+ apps. Send a Slack message, update a Jira ticket, query a Google Sheet, find a HubSpot contact — all through natural conversation.
 
-This plugin supercharges your Zapier MCP setup with a personalized tools profile your agent uses to know which action fits the request, plus a built-in safety model that confirms write actions before they run.
+If you want to get up and running fast, say **"onboard zapier"** to your AI assistant. It'll connect the server, route you into a live first action so you can see Zapier work in your chat, and help you expand from there.
 
 https://github.com/user-attachments/assets/8304058f-67da-40b9-bc4f-5095b2817d61
 
-## Features
+## What you can ask for
 
-- **Personalized tools profile** — the `create-my-tools-profile` skill scans your enabled actions and writes persistent instructions so your agent knows what's available and when to use each one
-- **Built-in write safety** — every write action is shown with its payload and waits for your confirmation; reads run without interrupting context-gathering
-- **Health checks and audits** — the `zapier-status` skill diagnoses broken tools, finds duplicate actions, and flags conflicts with other MCP servers you've installed
+You don't have to remember any skill names. Talk to your assistant the way you normally would and it'll pick up the right path.
+
+| What you want | What to say |
+|---|---|
+| Connect Zapier MCP and figure out the next step | "onboard zapier" |
+| See it actually work — one app, one action, in a few minutes | "show me how Zapier works" |
+| Set up a toolkit for your day-to-day | "set up my Zapier toolkit" |
+| Check that everything's still working | "zapier status" |
+
+Each step builds on the last, so you never have to commit to a full setup before you've seen Zapier do something useful — the demo is there so you can try it with one action first.
+
+## Built-in safety
+
+Read actions (find, search, get) run immediately. Write actions (send, create, update) show you the payload first and wait for your approval. You won't be surprised by an outbound message or a created record.
 
 ## Install
 
@@ -67,11 +78,7 @@ Add to your client's MCP config:
 
 Then sign in at [mcp.zapier.com](https://mcp.zapier.com) when prompted.
 
-## Using Zapier MCP
-
-Once installed, talk to your AI assistant in plain English. The agent picks the right Zapier action based on your request.
-
-**Example prompts:**
+## Example prompts once you're set up
 
 - "Send a Slack message to #launches saying the release is delayed to Friday"
 - "Find the Jira tickets assigned to me that are still open this sprint"
@@ -80,16 +87,12 @@ Once installed, talk to your AI assistant in plain English. The agent picks the 
 - "What's on my calendar tomorrow?"
 - "Find the HubSpot contact for sarah@acme.com and log this conversation as a note"
 
-Write actions show the payload first and wait for your confirmation. Read actions run immediately.
+## Tips
 
-First time? Say **"setup zapier"** to your agent.
-
-## Best practices
-
-- **Generate a tools profile after setup.** The `create-my-tools-profile` skill writes personalized instructions to your client's rules directory. Future conversations know what you've enabled and when each tool should be reached for, without re-explaining.
-- **Prefer native MCP servers for single-app deep workflows.** If you do heavy Slack or GitHub work, a dedicated MCP server for that app will usually outperform Zapier's general-purpose action. Use Zapier MCP for breadth — apps that don't have native servers, and cross-app chains.
-- **Re-run `zapier-status` periodically.** Find duplicates, low-value actions, and conflicts with native MCPs so the catalog stays lean.
-- **For agent-readable docs**, append `.md` to any `https://docs.zapier.com/<path>` URL — there's a raw-markdown mirror behind every doc page.
+- **Try one action before configuring a whole toolkit.** A few minutes seeing Zapier work beats reading a feature list. The demo is built for exactly that.
+- **Prefer native MCP servers for heavy single-app work.** Doing a lot of Slack or GitHub? A dedicated MCP server for that app will usually outperform Zapier's general-purpose action. Use Zapier MCP for breadth — apps without a native server, and cross-app chains.
+- **Re-run `"zapier status"` every once in a while.** Catches duplicates, low-value actions, and conflicts with native MCPs as your setup grows.
+- **For agent-readable docs**, append `.md` to any `https://docs.zapier.com/<path>` URL — every page has a raw-markdown mirror.
 
 ## Documentation & support
 

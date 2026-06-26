@@ -15,9 +15,9 @@ If no Zapier MCP tools are available, help the user authenticate the Zapier MCP 
 
 1. Try to authenticate through the client if an `mcp_auth` flow is available.
 2. If that is unavailable, tell the user to connect Zapier MCP through their client's MCP settings and sign in at mcp.zapier.com.
-3. After authentication, use the `zapier-setup` skill to guide action configuration.
+3. After authentication, use the `zapier-onboard` skill to route the user to the next step.
 
-Do not suggest `zapier-status` or `create-my-tools-profile` until Zapier action tools are available.
+Do not suggest `zapier-status` until Zapier action tools are available.
 
 ## Efficient Tool Use
 
@@ -43,9 +43,10 @@ Reads are free. Writes need confirmation.
 
 Use the plugin skills as the preferred support paths:
 
-- `zapier-setup`: onboarding, authentication, explaining Zapier MCP, adding tools, and connection troubleshooting.
+- `zapier-onboard`: introduce Zapier MCP, authenticate the server, and route to the next step.
+- `zapier-demo`: smallest-possible first win — one app, one read action, run it live.
+- `zapier-explore`: role-tailored toolkit setup — interview the user, suggest use cases, walk them through enabling.
 - `zapier-status`: health checks, audits, duplicate detection, and systematic diagnostics.
-- `create-my-tools-profile`: generating personalized instructions after Zapier action tools are available.
 
 ## Error Handling
 

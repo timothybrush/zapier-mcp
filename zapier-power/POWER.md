@@ -42,22 +42,24 @@ After installing this power, connect the Zapier MCP server:
 
 ### Step 2: Get started
 
-- **If Zapier tools are available**: Say **"setup zapier"** to inspect what's configured and walk through next steps
+- **If Zapier tools are available**: Say **"onboard zapier"** to inspect what's configured and walk through next steps
 - **If not connected**: Attempt `mcp_auth` on the Zapier MCP server, or follow the manual connection steps above
 
 ## Available Steering Files
 
 | File | Purpose |
 |---|---|
-| [`steering/zapier-setup.md`](./steering/zapier-setup.md) | First-run setup — authentication, mode detection, and onboarding |
+| [`steering/zapier-onboard.md`](./steering/zapier-onboard.md) | First-run onboarding — pitch, authentication, and routing to the next step |
+| [`steering/zapier-demo.md`](./steering/zapier-demo.md) | Smallest-possible first win — one app, one read action, demoed live |
+| [`steering/zapier-explore.md`](./steering/zapier-explore.md) | Role-tailored toolkit setup — interview, use cases, walk through enabling |
 | [`steering/zapier-status.md`](./steering/zapier-status.md) | Health check, audit, and diagnose modes for monitoring the setup |
-| [`steering/create-my-tools-profile.md`](./steering/create-my-tools-profile.md) | Generate a personalized AI tool profile from enabled Zapier actions |
 
 ## When to Load Steering Files
 
-- Setting up Zapier or troubleshooting connection issues → `zapier-setup.md`
+- Onboarding a new user or troubleshooting connection issues → `zapier-onboard.md`
+- Quick demo or smallest first win → `zapier-demo.md`
+- Setting up a role-tailored toolkit ("what should I enable for my role?") → `zapier-explore.md`
 - Checking tool health, auditing setup, or diagnosing broken tools → `zapier-status.md`
-- Generating a personalized tools profile after setup → `create-my-tools-profile.md`
 
 ## Available MCP Servers
 

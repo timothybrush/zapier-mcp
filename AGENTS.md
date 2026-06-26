@@ -65,9 +65,9 @@ Then have the user sign in at [mcp.zapier.com](https://mcp.zapier.com) when prom
 
 ## After install
 
-Once the plugin is loaded, the rest of your guidance comes from the plugin itself — start with [`plugins/zapier/rules/zapier-lifecycle.mdc`](./plugins/zapier/rules/zapier-lifecycle.mdc). It covers the read/write safety model and routing to the setup/status/tools-profile skills. For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
+Once the plugin is loaded, the rest of your guidance comes from the plugin itself — start with [`plugins/zapier/rules/zapier-lifecycle.mdc`](./plugins/zapier/rules/zapier-lifecycle.mdc). It covers the read/write safety model and routing between the onboard, demo, explore, and status skills. For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp).
 
-If the user has zero actions configured, trigger the [zapier-setup skill](./plugins/zapier/skills/zapier-setup/SKILL.md) ("setup zapier") to walk them through enabling actions.
+If the user is brand new, trigger the [zapier-onboard skill](./plugins/zapier/skills/zapier-onboard/SKILL.md) ("onboard zapier") to introduce Zapier MCP and walk them through connecting the server.
 
 ## Fetching Zapier docs
 
@@ -78,9 +78,10 @@ Any `https://docs.zapier.com/<path>` page has a raw-markdown mirror — append `
 | Need | File |
 |---|---|
 | Lifecycle rules + safety model + skill routing | [plugins/zapier/rules/zapier-lifecycle.mdc](./plugins/zapier/rules/zapier-lifecycle.mdc) |
-| Setup walkthrough | [plugins/zapier/skills/zapier-setup/SKILL.md](./plugins/zapier/skills/zapier-setup/SKILL.md) |
+| Onboarding walkthrough | [plugins/zapier/skills/zapier-onboard/SKILL.md](./plugins/zapier/skills/zapier-onboard/SKILL.md) |
+| Smallest-possible first-win walkthrough | [plugins/zapier/skills/zapier-demo/SKILL.md](./plugins/zapier/skills/zapier-demo/SKILL.md) |
+| Role-tailored toolkit setup | [plugins/zapier/skills/zapier-explore/SKILL.md](./plugins/zapier/skills/zapier-explore/SKILL.md) |
 | Status / health checks | [plugins/zapier/skills/zapier-status/SKILL.md](./plugins/zapier/skills/zapier-status/SKILL.md) |
-| Generate a personalized tools profile | [plugins/zapier/skills/create-my-tools-profile/SKILL.md](./plugins/zapier/skills/create-my-tools-profile/SKILL.md) |
 | Claude Code plugin manifest | [plugins/zapier/.claude-plugin/plugin.json](./plugins/zapier/.claude-plugin/plugin.json) |
 | Cursor plugin manifest | [plugins/zapier/.cursor-plugin/plugin.json](./plugins/zapier/.cursor-plugin/plugin.json) |
 | GitHub Copilot CLI plugin manifest | [plugins/zapier/.github/plugin/plugin.json](./plugins/zapier/.github/plugin/plugin.json) |
