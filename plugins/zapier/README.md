@@ -1,44 +1,60 @@
-# Zapier Plugin
+# Zapier MCP Plugin
 
-Connects your AI client to [Zapier MCP](https://docs.zapier.com/mcp/home) — Zapier's hosted Model Context Protocol server. Configure your actions at [mcp.zapier.com](https://mcp.zapier.com), and each one becomes a tool your AI can call directly.
+[Zapier MCP](https://docs.zapier.com/mcp/home) is how your AI talks to the apps you already live in. 9,000+ of them, 40,000+ actions, all triggered by a sentence. This plugin makes it effortless to get there: a guided onboard, real-life use cases that show you what's worth automating, and the shortest path from "I wish my AI could do that" to it actually happening.
 
-## Quick Start
+## Get started
 
-After installing the plugin:
+1. **Install the plugin.** Pick your AI client at [docs.zapier.com/mcp/clients](https://docs.zapier.com/mcp/clients). We've got a setup guide for each one.
+2. **Onboard.** Tell your AI **"onboard zapier"** and we'll take it from there.
 
-1. Connect the Zapier MCP server in your client's settings:
-   - **Cursor:** Settings → Cursor Settings → Tools & MCP → click **Connect**
-   - **Claude Desktop:** Customize → Connectors → Zapier → click **Connect**
-   - **Other clients:** Find the Zapier MCP server in your MCP settings and click Connect
-2. Sign in to your Zapier account when prompted
-3. Open a chat and say **"setup zapier"** to get started
+https://github.com/user-attachments/assets/8304058f-67da-40b9-bc4f-5095b2817d61
 
-The plugin auto-detects your server mode and routes to the right onboarding flow.
+## Features
 
-## What's Included
+- **Guided onboarding** *("onboard zapier")*: we'll get you connected and figure out what to set up first.
+- **Live demo** *("show me how Zapier works")*: see Zapier work in one quick action before you commit to more.
+- **Real-life workflow setup** *("set up my Zapier toolkit")*: we'll help you build a toolkit shaped around how you actually work.
+- **Health checks** *("zapier status")*: quick check that everything's running, find duplicates, troubleshoot.
 
-| Component                         | Description                                                                                                                                                       |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **zapier-lifecycle** rule         | Enforces the safety model for reads vs writes, duplicate detection with native MCP servers, and error handling. Always active.                                    |
-| **zapier-setup** skill            | Onboarding and connection management. Diagnoses your setup, branches into the right flow (fresh install, reconnect, add tools), and walks you through end-to-end. |
-| **zapier-status** skill           | Three modes: health check (dashboard of connected tools), audit (find duplicates and waste), diagnose (systematic troubleshooting).                               |
-| **create-my-tools-profile** skill | Scans your configured action tools and generates a personalized tools profile so your AI knows what tools you have and when to use them.                          |
+Talk to your assistant naturally. It picks the right path from context.
 
-## Server modes
+## How the skills fit together
 
-Zapier MCP servers run in one of two modes; the plugin detects which automatically.
+```mermaid
+flowchart LR
+    O[onboard: connect to your MCP] --> D[demo: zero to working action] --> E[explore: set up real-life workflows]
+```
 
-- **Agentic** — Action discovery and execution are managed in chat through built-in meta-tools (`list_enabled_zapier_actions`, `discover_zapier_actions`, `execute_zapier_read_action`, etc.).
-- **Classic** — Each enabled action is exposed as a dedicated tool named `app_action_name` (e.g., `gmail_send_email`, `slack_find_message`).
+We'll walk you through each step: get you connected, run your first real action, then help you build out the workflows you'll actually use day-to-day.
 
-For the full mode-specific tool reference, see [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home).
+## Example prompts
 
-## Links
+> "Draft a Gmail reply to sarah@acme.com confirming Friday's 2pm meeting"
+>
+> "Find 30 minutes I'm free tomorrow afternoon and book a Google Calendar event with the team"
+>
+> "Send a Slack message in #launches: 'Release shipped, monitoring now'"
+>
+> "Add a row to my Q3 Campaigns sheet with today's lead numbers"
+>
+> "Create a Jira ticket in BACKEND for the auth bug we just discussed"
+>
+> "Save the action items from this meeting to my Notion 'Engineering' workspace"
+>
+> "Find the HubSpot contact for sarah@acme.com and log this conversation as a note"
+>
+> "Create a Linear issue from this customer email and DM the owner on Slack"
 
-- [Zapier MCP Dashboard](https://mcp.zapier.com) — Manage your server, authenticate apps, view connected tools
-- [Zapier MCP documentation](https://docs.zapier.com/mcp/home) — Full product docs
-- [Zapier status](https://status.zapier.com) — Check for outages
+More examples at [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home).
 
-## Support
+## Tips
 
-For issues with the plugin or Zapier MCP, contact [support@zapier.com](mailto:support@zapier.com).
+- **Try one action before configuring a whole toolkit.** A few minutes seeing Zapier work beats reading a feature list. The demo is built for exactly that.
+- **Re-run `"zapier status"` every once in a while.** Catches duplicates, low-value actions, and conflicts as your setup grows.
+
+## Documentation & support
+
+- [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home): full product documentation
+- [mcp.zapier.com](https://mcp.zapier.com): manage your server and actions
+- [status.zapier.com](https://status.zapier.com): check for outages
+- [help.zapier.com](https://help.zapier.com): support

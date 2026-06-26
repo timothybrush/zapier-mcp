@@ -1,11 +1,13 @@
 ---
-name: zapier-setup
-description: Set up Zapier MCP and add tools to your AI assistant. Introduces what Zapier can do, walks through authentication, detects your server mode, then branches into the right flow — summary for healthy setups, reconnect for broken auth, onboarding for fresh installs, or config help when the server is missing. Use when getting started, troubleshooting connection issues, adding new tools, or when the user asks "what can I do now", "what can I do with Zapier", "show me how the Zapier plugin works", "what is Zapier MCP", "how does Zapier work", or "tell me about Zapier".
+name: zapier-onboard
+description: Onboard a new user to Zapier MCP — introduce what it can do, walk through authentication, and route into the right flow based on the state of their setup. Use when getting started, troubleshooting connection issues, or when the user asks "what is Zapier MCP", "how do I get started with Zapier", "set me up", "what can I do with Zapier", or "tell me about Zapier".
 ---
 
-# Zapier setup
+# Zapier onboard
 
-Introduce Zapier MCP, get the user authenticated, detect their server mode, then guide them through the appropriate setup flow.
+Introduce Zapier MCP, get the user authenticated, then guide them through the appropriate setup flow.
+
+For how the Zapier MCP server itself works, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home).
 
 ## Step 1: Introduction
 
@@ -19,7 +21,7 @@ Start by describing what Zapier MCP can do for the user, then get them authentic
 
 Check if any Zapier MCP tools are available:
 
-- **Tools are available** (either Agentic meta-tools or Classic action tools): The user is already authenticated. Give a shorter version of the pitch — "You've got Zapier MCP installed and connected. Let me check what you have set up." — then proceed to Step 2.
+- **Tools are available**: The user is already authenticated. Give a shorter version of the pitch — "You've got Zapier MCP installed and connected. Let me check what you have set up." — then proceed to Step 2.
 
 - **No Zapier tools available at all**: The server is installed but needs authentication. First, attempt to authenticate directly in the chat by calling `mcp_auth` on the Zapier MCP server. If that succeeds, re-check available tools and proceed to Step 2.
 
@@ -33,46 +35,36 @@ Check if any Zapier MCP tools are available:
 
   Wait for the user to confirm ("done"), then re-check available tools and proceed to Step 2.
 
-## Step 2: Detect mode
+## Step 2: Diagnose
 
-Check which tools are available to determine the server mode:
+Inspect the available Zapier MCP tools. The result determines which branch to follow:
 
-- **Agentic mode**: `list_enabled_zapier_actions` is available as a tool. Call `get_zapier_skill` with name `"zapier-mcp-onboarding"` on the Zapier MCP server and follow its instructions. If authentication is needed, help the user through it, then retry the call. **Do not continue with the steps below** — the Zapier-hosted onboarding skill handles the entire Agentic setup flow.
-
-- **Classic mode**: `get_configuration_url` and/or individual `app_action_name` tools are present, but `list_enabled_zapier_actions` is not. Continue to Step 3.
-
-## Step 3: Diagnose
-
-This step applies only to **Classic mode**.
-
-Try calling `get_configuration_url` or any Zapier tool. The result determines which branch to follow:
-
-| Result                                                        | Branch              |
-| ------------------------------------------------------------- | ------------------- |
-| Zapier action tools are available (e.g., `gmail_send_email`)  | **Healthy**         |
-| Only `get_configuration_url` is available (no action tools)   | **Fresh install**   |
-| Fails with auth/401 error                                     | **Auth broken**     |
-| No Zapier tools available at all (server not connected)       | **Not connected**   |
+| Result                                                       | Branch              |
+| ------------------------------------------------------------ | ------------------- |
+| Zapier action tools are available (beyond the configuration tools) | **Healthy**         |
+| Only configuration tools available (no actions yet)          | **Fresh install**   |
+| Calls fail with auth/401 errors                              | **Auth broken**     |
+| No Zapier tools available at all                             | **Not connected**   |
 
 ## Branch: Healthy
 
-The server is connected and has action tools configured. Show a summary and offer next steps.
+The server is connected and has actions configured. Show a summary and offer next steps.
 
-1. Look at the available Zapier MCP tools. Each action tool follows the naming pattern `app_action_name` (e.g., `slack_send_channel_message`, `gmail_find_email`). Identify the app from the tool description (e.g., "Send a **Slack** channel message" → Slack).
-2. Group tools by app and show a clean summary:
+1. Look at the available Zapier MCP tools and group them by app.
+2. Show a clean summary:
 
 "Your Zapier MCP is connected with [N] tools across [app list]:
 
-- **Slack**: `slack_send_channel_message`, `slack_find_message`, `slack_get_message`
-- **Gmail**: `gmail_find_email`, `gmail_send_email`
-- **Google Calendar**: `google_calendar_find_events`, `google_calendar_create_event`
+- **Slack**: ...
+- **Gmail**: ...
+- **Google Calendar**: ...
 
 Everything's working. What would you like to do?"
 
 3. Offer options:
-   - "Add more tools" → call `get_configuration_url` and direct the user there
+   - "Try one live" → trigger the **zapier-demo** skill for a first-action walkthrough
+   - "Add more tools" → trigger the **zapier-explore** skill to build out a role-tailored toolkit
    - "Run a health check" → trigger the **zapier-status** skill
-   - "Create my tools profile" → trigger the **create-my-tools-profile** skill
    - Or just start using the tools
 
 ## Branch: Auth broken
@@ -110,11 +102,11 @@ The Zapier MCP server is installed via the plugin but hasn't been authenticated 
 
 4. Wait for the user to confirm ("done").
 
-5. Re-diagnose by checking available Zapier MCP tools. Proceed to the appropriate branch — most likely **Fresh install** (server connected, no action tools yet).
+5. Re-diagnose by checking available Zapier MCP tools. Proceed to the appropriate branch — most likely **Fresh install** (server connected, no actions yet).
 
 ## Branch: Fresh install
 
-The server is connected but has no action tools. The user needs to add actions through the web UI.
+The server is connected but has no actions configured. The user needs to add actions through Zapier.
 
 ### Step 1: Workflow-first discovery
 
@@ -122,7 +114,7 @@ Don't ask "what apps do you use?" Start with what they're trying to accomplish.
 
 "You're connected but don't have any tools set up yet. Let's add some."
 
-Call `get_configuration_url` and share the returned URL so the user can go directly to their server's tool config page.
+Direct the user to [mcp.zapier.com](https://mcp.zapier.com) (or call the server's configuration-URL tool if available) so they can go directly to their server's tool config page.
 
 Then help them pick what to add based on their workflow:
 
@@ -140,7 +132,7 @@ Then help them pick what to add based on their workflow:
 
 ### Step 2: Guide configuration
 
-Recommend specific actions the user should add for each app in the web UI. Aim for 2-4 actions per app: one or two search actions and one or two write actions.
+Recommend specific actions the user should add for each app. Aim for 2-4 actions per app: one or two search actions and one or two write actions.
 
 **Recommended starters by app:**
 
@@ -161,24 +153,22 @@ Recommend specific actions the user should add for each app in the web UI. Aim f
 | Coda            | Find Row                               | Create Row               |
 | Airtable        | Find Record                            | Create Record            |
 
-Tell the user which actions to add for their chosen apps, then wait for them to configure and authenticate everything in the web UI.
+Tell the user which actions to add for their chosen apps, then wait for them to configure and authenticate everything.
 
 "Add those actions and connect your app accounts in the Zapier dashboard. Come back and say **done** when you're finished."
 
 ### Step 3: Verify
 
-After the user confirms, check the available Zapier MCP tools to see what was added. If new action tools appeared, show a summary. If nothing changed, the user may need to reload their client (see "Reload instructions by client" below).
+After the user confirms, check the available Zapier MCP tools to see what was added. If new tools appeared, show a summary. If nothing changed, the user may need to reload their client (see "Reload instructions by client" below).
 
-### Step 4: Generate profile
+### Step 4: Wrap up
 
 Once everything is connected:
 
 1. Show a final summary of the setup.
-2. Offer to generate personalized instructions:
+2. Hand off to the natural next step:
 
-"Want me to create a tools profile? It teaches your AI exactly when and how to use each of these tools in future conversations."
-
-If yes, follow the **create-my-tools-profile** skill.
+"You're set up. Want to try one live? Run **/zapier-demo** to see one action work, or **/zapier-explore** if you want to keep building out the toolkit."
 
 ## MCP config by client
 

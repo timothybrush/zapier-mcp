@@ -14,11 +14,12 @@ Connect your AI assistant to 9,000+ apps — Slack, Gmail, Google Calendar, Jira
 
 **Key capabilities:**
 
-- **Two server modes**: Agentic mode exposes 14 meta-tools for in-chat action management; Classic mode exposes each configured action as its own MCP tool
 - **Cross-app workflows**: Chain reads and writes across Slack, Gmail, Jira, Notion, HubSpot, and 9,000+ other apps through natural conversation
 - **Built-in safety model**: Read actions run without confirmation; write actions require explicit user approval
 - **Personalized tool profiles**: Generate persistent AI instructions tailored to the specific set of actions you have enabled
 - **OAuth authentication**: No API keys required — authenticate once via mcp.zapier.com and per-app OAuth flows
+
+For how the Zapier MCP server itself works — tool surface, configuration, action management — see [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home).
 
 ## When to Use This Power
 
@@ -39,33 +40,26 @@ After installing this power, connect the Zapier MCP server:
 - **Connection:** HTTPS endpoint at `https://mcp.zapier.com/api/v1/connect`
 - **Authorization:** OAuth via mcp.zapier.com (no API key required)
 
-### Step 2: Detect your server mode
+### Step 2: Get started
 
-Check which tools are available to detect the mode:
-
-- **Agentic mode**: `list_enabled_zapier_actions` is present — actions are managed and executed via meta-tools in chat
-- **Classic mode**: `get_configuration_url` + individual `app_action_name` tools (e.g., `gmail_send_email`) — each configured action is its own MCP tool
-- **Not connected**: No Zapier tools available — the server needs authentication
-
-### Step 3: Get started
-
-- **Agentic mode**: Call `get_zapier_skill` with name `"zapier-mcp-onboarding"` and follow its instructions
-- **Classic mode**: Say **"setup zapier"** to trigger the setup workflow
-- **Not connected**: Attempt `mcp_auth` on the Zapier MCP server, or follow the manual connection steps above
+- **If Zapier tools are available**: Say **"onboard zapier"** to inspect what's configured and walk through next steps
+- **If not connected**: Attempt `mcp_auth` on the Zapier MCP server, or follow the manual connection steps above
 
 ## Available Steering Files
 
 | File | Purpose |
 |---|---|
-| [`steering/zapier-setup.md`](./steering/zapier-setup.md) | First-run setup — authentication, mode detection, and onboarding |
+| [`steering/zapier-onboard.md`](./steering/zapier-onboard.md) | First-run onboarding — pitch, authentication, and routing to the next step |
+| [`steering/zapier-demo.md`](./steering/zapier-demo.md) | Smallest-possible first win — one app, one read action, demoed live |
+| [`steering/zapier-explore.md`](./steering/zapier-explore.md) | Role-tailored toolkit setup — interview, use cases, walk through enabling |
 | [`steering/zapier-status.md`](./steering/zapier-status.md) | Health check, audit, and diagnose modes for monitoring the setup |
-| [`steering/create-my-tools-profile.md`](./steering/create-my-tools-profile.md) | Generate a personalized AI tool profile from enabled Zapier actions |
 
 ## When to Load Steering Files
 
-- Setting up Zapier or troubleshooting connection issues → `zapier-setup.md`
+- Onboarding a new user or troubleshooting connection issues → `zapier-onboard.md`
+- Quick demo or smallest first win → `zapier-demo.md`
+- Setting up a role-tailored toolkit ("what should I enable for my role?") → `zapier-explore.md`
 - Checking tool health, auditing setup, or diagnosing broken tools → `zapier-status.md`
-- Generating a personalized tools profile after setup → `create-my-tools-profile.md`
 
 ## Available MCP Servers
 
@@ -74,34 +68,7 @@ Check which tools are available to detect the mode:
 - **Connection:** `https://mcp.zapier.com/api/v1/connect`
 - **Authorization:** OAuth via mcp.zapier.com (no API key required)
 
-**Mode detection signals:**
-
-- **Agentic mode**: `list_enabled_zapier_actions` is present as a tool — the server exposes a fixed set of meta-tools, and actions are managed and executed dynamically in chat
-- **Classic mode**: `get_configuration_url` is present alongside individual `app_action_name` tools — each configured action is its own MCP tool
-- **Not connected**: No Zapier tools are available — the server needs authentication
-
-#### Agentic mode tools (14 static meta-tools)
-
-| Tool | Purpose |
-|------|---------|
-| `list_enabled_zapier_actions` | List currently enabled actions |
-| `discover_zapier_actions` | Search for apps and actions available to add |
-| `enable_zapier_action` | Enable a specific action as a tool |
-| `disable_zapier_action` | Disable an action no longer needed |
-| `auto_provision_mcp` | Auto-setup tools from existing Zapier connections |
-| `execute_zapier_read_action` | Run a read/search action (e.g., find an email) |
-| `execute_zapier_write_action` | Run a write action (e.g., send a message) |
-| `get_configuration_url` | Get the URL to the Zapier MCP config page |
-| `list_zapier_skills` | List saved skills/workflows |
-| `get_zapier_skill` | Retrieve a specific skill |
-| `create_zapier_skill` | Create a new skill |
-| `update_zapier_skill` | Update an existing skill |
-| `delete_zapier_skill` | Delete a skill |
-| `send_feedback` | Send feedback to Zapier |
-
-#### Classic mode tools
-
-Each enabled action becomes its own MCP tool named `app_action_name` (e.g., `slack_send_channel_message`, `gmail_find_email`, `jira_find_issue_by_key`). Tool descriptions identify the associated app. The built-in `get_configuration_url` tool is always present and returns the URL where the user can add, remove, or manage actions in the web UI.
+For the tool surface exposed by the server, see [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home).
 
 ## MCP Configuration
 
