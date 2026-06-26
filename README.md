@@ -1,41 +1,32 @@
-# zapier-mcp
+# Zapier MCP Plugin Distribution
 
-Source of truth for the official [Zapier MCP](https://docs.zapier.com/mcp/home) plugin — packaged per client and distributed through plugin marketplaces.
+The official home of the [Zapier MCP](https://docs.zapier.com/mcp/home) plugin. We package it and ship it to every marketplace we support, so your favorite AI agent can connect to your 9,000+ apps the moment you install. The MCP server itself lives at `mcp.zapier.com`. This repo is the plugin on your AI's side, the part that turns the raw catalog into something your AI actually knows how to use.
 
-**Looking to install or use the plugin?** See [`plugins/zapier/README.md`](./plugins/zapier/README.md) for features, install paths, and example prompts. Or grab it directly from your client's marketplace:
+https://github.com/user-attachments/assets/8304058f-67da-40b9-bc4f-5095b2817d61
 
-- **Claude Code** — `/plugin install zapier@claude-plugins-official`
-- **Cursor** — [cursor.com/marketplace/zapier](https://cursor.com/marketplace/zapier)
-- **GitHub Copilot CLI** — `copilot plugin install zapier@zapier-plugins`
-- **Kiro** — [kiro.dev/powers](https://kiro.dev/powers)
+- **Get started with the plugin** → [`plugins/zapier/README.md`](./plugins/zapier/README.md)
+- **Browse the full docs** → [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home)
 
 ## What's in this repo
 
-- **[`plugins/zapier/`](./plugins/zapier/)** — the canonical plugin source: skills, lifecycle rule, brand assets, and per-client manifests for [Claude Code](./plugins/zapier/.claude-plugin/plugin.json), [Cursor](./plugins/zapier/.cursor-plugin/plugin.json), and [GitHub Copilot CLI](./plugins/zapier/.github/plugin/plugin.json)
-- **[`zapier-power/`](./zapier-power/)** — Kiro Power bundle: `POWER.md` manifest, scoped `mcp.json`, and `steering/` symlinks for [Kiro.dev](https://kiro.dev) consumption
-- **[`server.json`](./server.json)** — MCP Registry manifest so the hosted server is discoverable in the [official MCP Registry](https://registry.modelcontextprotocol.io)
-- **[`llms.txt`](./llms.txt)** — LLM discovery index
-- **Marketplace registries** — [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json) and [`.cursor-plugin/marketplace.json`](./.cursor-plugin/marketplace.json) at the repo root
+- **[`plugins/zapier/`](./plugins/zapier/)**: the plugin that onboards you to Zapier MCP and supercharges your experience
+- **Marketplace registries**: [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json) and [`.cursor-plugin/marketplace.json`](./.cursor-plugin/marketplace.json) at the repo root, so the plugin is discoverable in client marketplaces
 
-What's **not** here:
+## Supported marketplaces
 
-- The MCP server itself — hosted at `mcp.zapier.com` (closed source)
-- The action catalog — managed at [mcp.zapier.com](https://mcp.zapier.com)
-- Product documentation — at [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home)
+We ship this plugin to the following marketplaces:
 
-## Downstream marketplaces
-
-This repo is the source of truth for the plugin. It's vendored or mirrored into:
-
-- [`anthropics/claude-plugins-official`](https://github.com/anthropics/claude-plugins-official) — Anthropic's curated Claude Code marketplace (vendors `plugins/zapier/` via `git-subdir` pinned to `main`)
-- [`anthropics/knowledge-work-plugins`](https://github.com/anthropics/knowledge-work-plugins) — Anthropic's Claude Cowork marketplace (vendors `plugins/zapier/` via `git-subdir` pinned to `main`)
-- [`kirodotdev/powers`](https://github.com/kirodotdev/powers) — Kiro's Powers catalog, browsable at [kiro.dev/powers](https://kiro.dev/powers); mirrors `POWER.md` and the steering files
-- [`cursor/mcp-servers`](https://github.com/cursor/mcp-servers/tree/main/servers/zapier) — Cursor's MCP server registry, surfaced at [cursor.com/marketplace/zapier](https://cursor.com/marketplace/zapier)
+- [`anthropics/claude-plugins-official`](https://github.com/anthropics/claude-plugins-official): Anthropic's curated Claude Code marketplace
+- [`anthropics/knowledge-work-plugins`](https://github.com/anthropics/knowledge-work-plugins): Anthropic's Claude Cowork marketplace
+- [`kirodotdev/powers`](https://github.com/kirodotdev/powers): Kiro's Powers catalog, browsable at [kiro.dev/powers](https://kiro.dev/powers)
+- [`cursor/mcp-servers`](https://github.com/cursor/mcp-servers/tree/main/servers/zapier): Cursor's MCP server registry, surfaced at [cursor.com/marketplace/zapier](https://cursor.com/marketplace/zapier)
 
 ## For contributors
 
-- [AGENTS.md](./AGENTS.md) — guide for AI agents working in this repo
-- [CONTRIBUTING.md](./CONTRIBUTING.md) — how to contribute
+- [AGENTS.md](./AGENTS.md): guide for AI agents working in this repo
+- [CONTRIBUTING.md](./CONTRIBUTING.md): how to contribute
+- **Per-client manifests**: [Claude Code](./plugins/zapier/.claude-plugin/plugin.json), [Cursor](./plugins/zapier/.cursor-plugin/plugin.json), and [GitHub Copilot CLI](./plugins/zapier/.github/plugin/plugin.json)
+- [`llms.txt`](./llms.txt): LLM discovery index
 
 ---
 

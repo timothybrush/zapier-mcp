@@ -1,102 +1,60 @@
-# Zapier Plugin
+# Zapier MCP Plugin
 
-> [Zapier MCP](https://docs.zapier.com/mcp/home) connects your AI assistant to 9,000+ apps. Send a Slack message, update a Jira ticket, query a Google Sheet, find a HubSpot contact — all through natural conversation.
+[Zapier MCP](https://docs.zapier.com/mcp/home) is how your AI talks to the apps you already live in. 9,000+ of them, 40,000+ actions, all triggered by a sentence. This plugin makes it effortless to get there: a guided onboard, real-life use cases that show you what's worth automating, and the shortest path from "I wish my AI could do that" to it actually happening.
 
-If you want to get up and running fast, say **"onboard zapier"** to your AI assistant. It'll connect the server, route you into a live first action so you can see Zapier work in your chat, and help you expand from there.
+## Get started
+
+1. **Install the plugin.** Pick your AI client at [docs.zapier.com/mcp/clients](https://docs.zapier.com/mcp/clients). We've got a setup guide for each one.
+2. **Onboard.** Tell your AI **"onboard zapier"** and we'll take it from there.
 
 https://github.com/user-attachments/assets/8304058f-67da-40b9-bc4f-5095b2817d61
 
-## What you can ask for
+## Features
 
-You don't have to remember any skill names. Talk to your assistant the way you normally would and it'll pick up the right path.
+- **Guided onboarding** *("onboard zapier")*: we'll get you connected and figure out what to set up first.
+- **Live demo** *("show me how Zapier works")*: see Zapier work in one quick action before you commit to more.
+- **Real-life workflow setup** *("set up my Zapier toolkit")*: we'll help you build a toolkit shaped around how you actually work.
+- **Health checks** *("zapier status")*: quick check that everything's running, find duplicates, troubleshoot.
 
-| What you want | What to say |
-|---|---|
-| Connect Zapier MCP and figure out the next step | "onboard zapier" |
-| See it actually work — one app, one action, in a few minutes | "show me how Zapier works" |
-| Set up a toolkit for your day-to-day | "set up my Zapier toolkit" |
-| Check that everything's still working | "zapier status" |
+Talk to your assistant naturally. It picks the right path from context.
 
-Each step builds on the last, so you never have to commit to a full setup before you've seen Zapier do something useful — the demo is there so you can try it with one action first.
+## How the skills fit together
 
-## Built-in safety
-
-Read actions (find, search, get) run immediately. Write actions (send, create, update) show you the payload first and wait for your approval. You won't be surprised by an outbound message or a created record.
-
-## Install
-
-### Claude Code
-
-Run inside Claude Code's chat:
-
-```
-/plugin install zapier@claude-plugins-official
+```mermaid
+flowchart LR
+    O[onboard: connect to your MCP] --> D[demo: zero to working action] --> E[explore: set up real-life workflows]
 ```
 
-If Anthropic's [official marketplace](https://github.com/anthropics/claude-plugins-official) isn't added yet, add this repo as the marketplace first:
+We'll walk you through each step: get you connected, run your first real action, then help you build out the workflows you'll actually use day-to-day.
 
-```
-/plugin marketplace add zapier/zapier-mcp
-/plugin install zapier@zapier-plugins
-```
+## Example prompts
 
-### Cursor
+> "Draft a Gmail reply to sarah@acme.com confirming Friday's 2pm meeting"
+>
+> "Find 30 minutes I'm free tomorrow afternoon and book a Google Calendar event with the team"
+>
+> "Send a Slack message in #launches: 'Release shipped, monitoring now'"
+>
+> "Add a row to my Q3 Campaigns sheet with today's lead numbers"
+>
+> "Create a Jira ticket in BACKEND for the auth bug we just discussed"
+>
+> "Save the action items from this meeting to my Notion 'Engineering' workspace"
+>
+> "Find the HubSpot contact for sarah@acme.com and log this conversation as a note"
+>
+> "Create a Linear issue from this customer email and DM the owner on Slack"
 
-**From the marketplace:** open [cursor.com/marketplace/zapier](https://cursor.com/marketplace/zapier) and click **Install**.
-
-**Manual setup:** add Zapier through **Cursor → Settings → Cursor Settings → MCP** ([config below](#any-other-mcp-compatible-client)).
-
-### GitHub Copilot CLI
-
-Run in your terminal:
-
-```
-copilot plugin marketplace add zapier/zapier-mcp
-copilot plugin install zapier@zapier-plugins
-```
-
-### Kiro
-
-**From the catalog:** open [kiro.dev/powers](https://kiro.dev/powers), find Zapier, and click **Add to Kiro**.
-
-**Manual setup:** add Zapier through Kiro's MCP settings ([config below](#any-other-mcp-compatible-client)).
-
-### Any other MCP-compatible client
-
-Add to your client's MCP config:
-
-```json
-{
-  "mcpServers": {
-    "zapier": {
-      "type": "http",
-      "url": "https://mcp.zapier.com/api/v1/connect"
-    }
-  }
-}
-```
-
-Then sign in at [mcp.zapier.com](https://mcp.zapier.com) when prompted.
-
-## Example prompts once you're set up
-
-- "Send a Slack message to #launches saying the release is delayed to Friday"
-- "Find the Jira tickets assigned to me that are still open this sprint"
-- "Add a row to my Q3 campaigns sheet with the data we just discussed"
-- "Create a Linear issue from this customer email and label it 'urgent'"
-- "What's on my calendar tomorrow?"
-- "Find the HubSpot contact for sarah@acme.com and log this conversation as a note"
+More examples at [docs.zapier.com/mcp/home](https://docs.zapier.com/mcp/home).
 
 ## Tips
 
 - **Try one action before configuring a whole toolkit.** A few minutes seeing Zapier work beats reading a feature list. The demo is built for exactly that.
-- **Prefer native MCP servers for heavy single-app work.** Doing a lot of Slack or GitHub? A dedicated MCP server for that app will usually outperform Zapier's general-purpose action. Use Zapier MCP for breadth — apps without a native server, and cross-app chains.
-- **Re-run `"zapier status"` every once in a while.** Catches duplicates, low-value actions, and conflicts with native MCPs as your setup grows.
-- **For agent-readable docs**, append `.md` to any `https://docs.zapier.com/<path>` URL — every page has a raw-markdown mirror.
+- **Re-run `"zapier status"` every once in a while.** Catches duplicates, low-value actions, and conflicts as your setup grows.
 
 ## Documentation & support
 
-- [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home) — full product documentation
-- [mcp.zapier.com](https://mcp.zapier.com) — manage your server and actions
-- [status.zapier.com](https://status.zapier.com) — check for outages
-- [help.zapier.com](https://help.zapier.com) — support
+- [docs.zapier.com/mcp](https://docs.zapier.com/mcp/home): full product documentation
+- [mcp.zapier.com](https://mcp.zapier.com): manage your server and actions
+- [status.zapier.com](https://status.zapier.com): check for outages
+- [help.zapier.com](https://help.zapier.com): support
