@@ -28,7 +28,7 @@ We ship this plugin to the following marketplaces:
 
 - [AGENTS.md](./AGENTS.md): guide for AI agents working in this repo
 - [CONTRIBUTING.md](./CONTRIBUTING.md): how to contribute
-- **Per-client manifests**: [Claude Code](./plugins/zapier/.claude-plugin/plugin.json), [Cursor](./plugins/zapier/.cursor-plugin/plugin.json), and [GitHub Copilot CLI](./plugins/zapier/.github/plugin/plugin.json)
+- **Per-client manifests**: [Claude Code](./plugins/zapier/.claude-plugin/plugin.json), [OpenAI Codex](./plugins/zapier/.codex-plugin/plugin.json), [Cursor](./plugins/zapier/.cursor-plugin/plugin.json), and [GitHub Copilot CLI](./plugins/zapier/.github/plugin/plugin.json)
 - [`llms.txt`](./llms.txt): LLM discovery index
 
 ---

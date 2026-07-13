@@ -16,6 +16,7 @@ This repository contains per-client plugin manifests, install assets, skills, an
 Per-client install manifests live under `plugins/zapier/`. Each surfaces the same MCP server (`mcp.zapier.com/api/v1/connect`) shaped for a specific client.
 
 - [Claude Code plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.claude-plugin/plugin.json): Manifest for Claude Code's plugin marketplace.
+- [OpenAI Codex plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.codex-plugin/plugin.json): Manifest for OpenAI Codex's plugin marketplace.
 - [Cursor plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.cursor-plugin/plugin.json): Manifest for Cursor's plugin marketplace.
 - [MCP server config](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.mcp.json): Generic `mcpServers` declaration with `"type": "http"`.
 - [Claude marketplace registry](https://github.com/zapier/zapier-mcp/blob/main/.claude-plugin/marketplace.json): Top-level marketplace entry pointing at `plugins/zapier`.
