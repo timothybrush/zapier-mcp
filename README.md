@@ -13,16 +13,18 @@ https://github.com/user-attachments/assets/8304058f-67da-40b9-bc4f-5095b2817d61
 ## What's in this repo
 
 - **[`plugins/zapier/`](./plugins/zapier/)**: the plugin that onboards you to Zapier MCP and supercharges your experience
-- **Marketplace registries**: [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json) and [`.cursor-plugin/marketplace.json`](./.cursor-plugin/marketplace.json) at the repo root, so the plugin is discoverable in client marketplaces
 
-## Supported marketplaces
+## Where to install this plugin
 
-We ship this plugin to the following marketplaces:
+This repo doesn't host its own marketplace — install the plugin through one of these:
 
+- [`zapier/marketplace`](https://github.com/zapier/marketplace): Zapier's marketplace for coding agents, covering this plugin plus every other Zapier plugin (Notion, Google Sheets, the SDK, and more)
 - [`anthropics/claude-plugins-official`](https://github.com/anthropics/claude-plugins-official): Anthropic's curated Claude Code marketplace
 - [`anthropics/knowledge-work-plugins`](https://github.com/anthropics/knowledge-work-plugins): Anthropic's Claude Cowork marketplace
 - [`kirodotdev/powers`](https://github.com/kirodotdev/powers): Kiro's Powers catalog, browsable at [kiro.dev/powers](https://kiro.dev/powers)
 - [`cursor/mcp-servers`](https://github.com/cursor/mcp-servers/tree/main/servers/zapier): Cursor's MCP server registry, surfaced at [cursor.com/marketplace/zapier](https://cursor.com/marketplace/zapier)
+
+All of these pull the plugin straight from [`plugins/zapier/`](./plugins/zapier/) in this repo, so they always stay in sync with it.
 
 ## For contributors
 

@@ -25,8 +25,8 @@ The MCP server URL is the same across all clients: `https://mcp.zapier.com/api/v
 ### Claude Code
 
 ```
-/plugin marketplace add zapier/zapier-mcp
-/plugin install zapier@zapier-plugins
+/plugin marketplace add zapier/marketplace
+/plugin install mcp@zapier
 ```
 
 If Anthropic's [`claude-plugins-official`](https://github.com/anthropics/claude-plugins-official) marketplace is already added, skip the first step and run `/plugin install zapier@claude-plugins-official` instead.
@@ -38,8 +38,8 @@ Direct the user to [cursor.com/marketplace/zapier](https://cursor.com/marketplac
 ### GitHub Copilot CLI
 
 ```
-copilot plugin marketplace add zapier/zapier-mcp
-copilot plugin install zapier@zapier-plugins
+copilot plugin marketplace add zapier/marketplace
+copilot plugin install mcp@zapier
 ```
 
 ### Kiro
