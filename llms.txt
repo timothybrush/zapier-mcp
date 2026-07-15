@@ -19,9 +19,8 @@ Per-client install manifests live under `plugins/zapier/`. Each surfaces the sam
 - [OpenAI Codex plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.codex-plugin/plugin.json): Manifest for OpenAI Codex's plugin marketplace.
 - [Cursor plugin manifest](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.cursor-plugin/plugin.json): Manifest for Cursor's plugin marketplace.
 - [MCP server config](https://github.com/zapier/zapier-mcp/blob/main/plugins/zapier/.mcp.json): Generic `mcpServers` declaration with `"type": "http"`.
-- [Claude marketplace registry](https://github.com/zapier/zapier-mcp/blob/main/.claude-plugin/marketplace.json): Top-level marketplace entry pointing at `plugins/zapier`.
-- [Cursor marketplace registry](https://github.com/zapier/zapier-mcp/blob/main/.cursor-plugin/marketplace.json): Top-level marketplace entry pointing at `plugins/zapier`.
 - [MCP Registry manifest](https://github.com/zapier/zapier-mcp/blob/main/server.json): `server.json` for the [official MCP Registry](https://registry.modelcontextprotocol.io) catalog.
+- [`zapier/marketplace`](https://github.com/zapier/marketplace): install this plugin (and every other Zapier plugin) through Zapier's marketplace for coding agents.
 
 ## Skills
 
