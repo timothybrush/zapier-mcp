@@ -1,0 +1,13 @@
+{
+  "name": "zapier",
+  "version": "1.0.0",
+  "description": "Official plugin distribution for the hosted Zapier MCP server. Connects Gemini CLI to thousands of apps — send messages, pull data, trigger workflows.",
+  "mcpServers": {
+    "zapier": {
+      "httpUrl": "https://mcp.zapier.com/api/v1/connect",
+      "oauth": {
+        "enabled": true
+      }
+    }
+  }
+}

@@ -26,11 +26,19 @@ This repo doesn't host its own marketplace — install the plugin through one of
 
 All of these pull the plugin straight from [`plugins/zapier/`](./plugins/zapier/) in this repo, so they always stay in sync with it.
 
+Gemini CLI is the one exception — it installs directly from this repo's root, not through an external marketplace:
+
+```
+gemini extensions install https://github.com/zapier/zapier-mcp
+```
+
+Authenticate inside Gemini with `/mcp auth zapier`. The catalog entry is [`gemini-extension.json`](./gemini-extension.json) at the repo root, auto-indexed into the [Gemini CLI Extensions gallery](https://geminicli.com/extensions).
+
 ## For contributors
 
 - [AGENTS.md](./AGENTS.md): guide for AI agents working in this repo
 - [CONTRIBUTING.md](./CONTRIBUTING.md): how to contribute
-- **Per-client manifests**: [Claude Code](./plugins/zapier/.claude-plugin/plugin.json), [OpenAI Codex](./plugins/zapier/.codex-plugin/plugin.json), [Cursor](./plugins/zapier/.cursor-plugin/plugin.json), and [GitHub Copilot CLI](./plugins/zapier/.github/plugin/plugin.json)
+- **Per-client manifests**: [Claude Code](./plugins/zapier/.claude-plugin/plugin.json), [OpenAI Codex](./plugins/zapier/.codex-plugin/plugin.json), [Cursor](./plugins/zapier/.cursor-plugin/plugin.json), [GitHub Copilot CLI](./plugins/zapier/.github/plugin/plugin.json), and [Gemini CLI](./gemini-extension.json)
 - [`llms.txt`](./llms.txt): LLM discovery index
 
 ---

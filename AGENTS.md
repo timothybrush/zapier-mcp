@@ -42,6 +42,14 @@ copilot plugin marketplace add zapier/marketplace
 copilot plugin install mcp@zapier
 ```
 
+### Gemini CLI
+
+```
+gemini extensions install https://github.com/zapier/zapier-mcp
+```
+
+After install, the user authenticates inside Gemini with `/mcp auth zapier`.
+
 ### Kiro
 
 Direct the user to [kiro.dev/powers](https://kiro.dev/powers), find Zapier, and click **Add to Kiro**. Powers register through the IDE — no command-line setup.
@@ -86,6 +94,7 @@ Any `https://docs.zapier.com/<path>` page has a raw-markdown mirror — append `
 | OpenAI Codex plugin manifest | [plugins/zapier/.codex-plugin/plugin.json](./plugins/zapier/.codex-plugin/plugin.json) |
 | Cursor plugin manifest | [plugins/zapier/.cursor-plugin/plugin.json](./plugins/zapier/.cursor-plugin/plugin.json) |
 | GitHub Copilot CLI plugin manifest | [plugins/zapier/.github/plugin/plugin.json](./plugins/zapier/.github/plugin/plugin.json) |
+| Gemini CLI extension manifest | [gemini-extension.json](./gemini-extension.json) |
 | Kiro Power manifest + steering | [zapier-power/](./zapier-power/) |
 | MCP Registry manifest | [server.json](./server.json) |
 | LLM discovery index | [llms.txt](./llms.txt) |
